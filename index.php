@@ -1,18 +1,88 @@
+<?php 
+session_start();
+define("CONST_FILE_PATH", "includes/constants.php");
+define("CURRENT_PAGE", "home");
+require('classes/WebPage.php'); //Set up page as a web page
+require 'swiftmailer/lib/swift_required.php';
+$thisPage = new WebPage(); //Create new instance of webPage class
+
+$dbObj = new Database();//Instantiate database
+$thisPage->dbObj = $dbObj;
+$newsObj = new News($dbObj);
+$sliderObj = new Slider($dbObj);
+$testimonialObj = new Testimonial($dbObj);
+$brochureObj = new CourseBrochure($dbObj);
+$videoObj = new Video($dbObj);
+$settingObj = new Setting($dbObj);
+$Obj = new Setting($dbObj);
+$userObj = new User($dbObj); // Create an object of Admin class
+$errorArr = array(); //Array of errors
+$msg = ''; $msgStatus = '';
+
+include('includes/other-settings.php');
+require('includes/page-properties.php');
+if(isset($_POST['submit'])){
+    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) :  ''; 
+    if($email == "") {array_push ($errorArr, "valid email ");}
+    $name = filter_input(INPUT_POST, 'fname') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'fname')) :  ''; 
+    if($name == "") {array_push ($errorArr, " name ");}
+    $address = filter_input(INPUT_POST, 'address') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'address')) :  ''; 
+    if($address == "") {array_push ($errorArr, " address ");}
+    $state = filter_input(INPUT_POST, 'state') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'state')) :  ''; 
+    if($state == "") {array_push ($errorArr, " state/province ");}
+    $postCode = filter_input(INPUT_POST, 'post') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'post')) :  ''; 
+    if($postCode == "") {array_push ($errorArr, " postal code ");}
+    $country = filter_input(INPUT_POST, 'country') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'country')) :  ''; 
+    if($country == "") {array_push ($errorArr, " country ");}
+    $telephone = filter_input(INPUT_POST, 'telephone') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'telephone')) :  ''; 
+    if($telephone == "") {array_push ($errorArr, " telephone ");}
+    $body = filter_input(INPUT_POST, 'message') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'message')) :  ''; 
+    if($body == "") {array_push ($errorArr, " message ");}
+    $subject = filter_input(INPUT_POST, 'subject') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'subject')) :  ''; 
+
+    $captcha = trim(strtolower($_REQUEST['captcha'])) != $_SESSION['captcha'] ? "" : 1;
+    if($captcha == "") {array_push ($errorArr, " captcha ");}
+    
+    
+    if(count($errorArr) < 1)   {
+        $emailAddress = COMPANY_EMAIL;//iadet910@iadet.net
+        if(empty($subject)) $subject = "Message From: $name";	
+        $transport = Swift_MailTransport::newInstance();
+        $message = Swift_Message::newInstance();
+        
+            $content = "<table>";
+            $content .= "<tr>";
+            $content .= "<th>Full Name</th><th>Address</th> <th>State</th><th>Post Code</th><th>Country</th><th>Telephone</th><th>Email</th><th>Message</th>";
+            $content .= "</tr>";
+            $content .= "<tr>";
+            $content .= "<td>" . $name . "</td><td>" . $address . "</td> <td>" . $state . "</td><td>" . $postCode . "</td><td>" . $country . "</td><td>" . $telephone . "</td><td>" . $email. "</td><td>" . $body . "</td>";
+            $content .= "</tr>";
+            $content .= "</table>";
+            $content .= "</body>";
+            $content .= "</html>";
+        
+        $message->setTo(array($emailAddress => WEBSITE_AUTHOR));
+        $message->setSubject($subject);
+        $message->setBody($content);
+        $message->setFrom($email, $name);
+        $message->setContentType("text/html");
+        $mailer = Swift_Mailer::newInstance($transport);
+        $mailer->send($message);
+        $msgStatus = 'success';
+        $msg = $thisPage->messageBox('Your message has been sent.', 'success');
+    }else{ $msgStatus = 'error'; $msg = $thisPage->showError($errorArr); }
+}
+?>
 <!doctype html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
-        <title>Made One</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/png" href="favicon.ico">
+        <?php include('includes/meta-tags.php'); ?>
 
         <!--Google Font link-->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
 
         <link rel="stylesheet" href="assets/css/slick/slick.css"> 
         <link rel="stylesheet" href="assets/css/slick/slick-theme.css">
@@ -23,180 +93,29 @@
         <link rel="stylesheet" href="assets/css/magnific-popup.css">
         <link rel="stylesheet" href="assets/css/bootsnav.css">
 
-        <!-- xsslider slider css -->
-
-
-        <!--<link rel="stylesheet" href="assets/css/xsslider.css">-->
-
-
-
-
         <!--For Plugins external css-->
         <!--<link rel="stylesheet" href="assets/css/plugins.css" />-->
 
         <!--Theme custom css -->
         <link rel="stylesheet" href="assets/css/style.css">
-        <!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
 
         <!--Theme Responsive css-->
         <link rel="stylesheet" href="assets/css/responsive.css" />
 
         <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+        <link href="<?php echo SITE_URL; ?>sweet-alert/sweetalert.css" rel="stylesheet" type="text/css"/>
+        <link href="<?php echo SITE_URL; ?>sweet-alert/twitter.css" rel="stylesheet" type="text/css"/>
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse">
-
-
-        <!-- Preloader -->
-        <div id="loading">
-            <div id="loading-center">
-                <div id="loading-center-absolute">
-                    <div class="object" id="object_one"></div>
-                    <div class="object" id="object_two"></div>
-                    <div class="object" id="object_three"></div>
-                    <div class="object" id="object_four"></div>
-                </div>
-            </div>
-        </div><!--End off Preloader -->
-
+        <?php include('includes/pre-loader.php'); ?>
 
         <div class="culmn">
-            <!--Home page style-->
+            
+            <?php include('includes/header.php'); ?>
 
-
-            <nav class="navbar navbar-default bootsnav navbar-fixed">
-                <div class="navbar-top bg-black fix">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="navbar-callus text-left sm-text-center">
-                                    <ul class="list-inline">
-                                        <li><a href=""><i class="fa fa-phone"></i> Call us: 1234 5678 90</a></li>
-                                        <li><a href=""><i class="fa fa-envelope-o"></i> Contact us: your@email.com</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="navbar-socail text-right sm-text-center">
-                                    <ul class="list-inline">
-                                        <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href=""><i class="fa fa-behance"></i></a></li>
-                                        <li><a href=""><i class="fa fa-dribbble"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Start Top Search -->
-                <div class="top-search">
-                    <div class="container">
-                        <div class="input-group">
-                            <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                            <input type="text" class="form-control" placeholder="Search">
-                            <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Top Search -->
-
-
-                <div class="container"> 
-                    <div class="attr-nav">
-                        <ul>
-                            <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
-                        </ul>
-                    </div> 
-
-                    <!-- Start Header Navigation -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-                            <i class="fa fa-bars"></i>
-                        </button>
-                        <a class="navbar-brand" href="#brand">
-                            <img src="assets/images/logo.png" class="logo" alt="">
-                            <!--<img src="assets/images/footer-logo.png" class="logo logo-scrolled" alt="">-->
-                        </a>
-
-                    </div>
-                    <!-- End Header Navigation -->
-
-                    <!-- navbar menu -->
-                    <div class="collapse navbar-collapse" id="navbar-menu">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#home">Home</a></li>                    
-                            <li><a href="#features">About</a></li>
-                            <li><a href="#business">Service</a></li>
-                            <li><a href="#work">Portfolio</a></li>
-                            <li><a href="#test">Blog</a></li>
-                            <li><a href="#contact">Contact</a></li>
-                        </ul>
-                    </div><!-- /.navbar-collapse -->
-                </div> 
-
-            </nav>
-
-            <!--Home Sections-->
-
-            <section id="home" class="home bg-black fix">
-                <div class="overlay"></div>
-                <div class="container">
-                    <div class="row">
-                        <div class="main_home text-center">
-                            <div class="col-md-12">
-                                <div class="hello_slid">
-                                    <div class="slid_item">
-                                        <div class="home_text ">
-                                            <h2 class="text-white">Welcome to <strong>Made</strong></h2>
-                                            <h1 class="text-white">We Do Business All Of Time</h1>
-                                            <h3 class="text-white">- We Create a <strong>Concept</strong> into The Market -</h3>
-                                        </div>
-
-                                        <div class="home_btns m-top-40">
-                                            <a href="" class="btn btn-primary m-top-20">Buy Now</a>
-                                            <a href="" class="btn btn-default m-top-20">Take a Tour</a>
-                                        </div>
-                                    </div><!-- End off slid item -->
-                                    <div class="slid_item">
-                                        <div class="home_text ">
-                                            <h2 class="text-white">Welcome to <strong>Made</strong></h2>
-                                            <h1 class="text-white">We Do Business All Of Time</h1>
-                                            <h3 class="text-white">- We Create a <strong>Concept</strong> into The Market -</h3>
-                                        </div>
-
-                                        <div class="home_btns m-top-40">
-                                            <a href="" class="btn btn-primary m-top-20">Buy Now</a>
-                                            <a href="" class="btn btn-default m-top-20">Take a Tour</a>
-                                        </div>
-                                    </div><!-- End off slid item -->
-                                    <div class="slid_item">
-                                        <div class="home_text ">
-                                            <h2 class="text-white">Welcome to <strong>Made</strong></h2>
-                                            <h1 class="text-white">We Do Business All Of Time</h1>
-                                            <h3 class="text-white">- We Create a <strong>Concept</strong> into The Market -</h3>
-                                        </div>
-
-                                        <div class="home_btns m-top-40">
-                                            <a href="" class="btn btn-primary m-top-20">Buy Now</a>
-                                            <a href="" class="btn btn-default m-top-20">Take a Tour</a>
-                                        </div>
-                                    </div><!-- End off slid item -->
-                                </div>
-                            </div>
-
-                        </div>
-
-
-                    </div><!--End off row-->
-                </div><!--End off container -->
-            </section> <!--End off Home Sections-->
-
-
-
+            <?php include('includes/homepage-slider.php'); ?>
+            
             <!--Featured Section-->
             <section id="features" class="features">
                 <div class="container">
@@ -726,8 +645,8 @@
 
                             <div class="col-md-3">
                                 <div class="widget_item widget_newsletter sm-m-top-50">
-                                    <h5 class="text-white">Newsletter</h5>
-                                    <form class="form-inline m-top-30">
+                                    <h5 class="text-white">Subscribe to Our Newsletter</h5>
+                                    <form class="form-inline m-top-30" name="subscribeForm" id="subscribeForm">
                                         <div class="form-group">
                                             <input type="email" class="form-control" placeholder="Enter you Email">
                                             <button type="submit" class="btn text-center"><i class="fa fa-arrow-right"></i></button>
@@ -788,6 +707,30 @@
 
         <script src="assets/js/plugins.js"></script>
         <script src="assets/js/main.js"></script>
-
+        <script src="<?php echo SITE_URL; ?>sweet-alert/sweetalert.min.js" type="text/javascript"></script>
+        <?php if(isset($_SESSION['msg'])) {  ?>
+        <script>
+            swal({
+                title: "Message Box!",
+                text: '<?php echo $_SESSION['msg']; ?>',
+                confirmButtonText: "Okay",
+                customClass: 'twitter',
+                html: true,
+                type: '<?php echo $_SESSION['msgStatus']; ?>'
+            });
+        </script>
+        <?php  unset($_SESSION['msg']); unset($_SESSION['msgStatus']);  } ?>
+        <?php if(!empty($msg)) { $swalTitle = ($msgStatus == 'success') ?  'Message Sent!': 'Message Not Sent!';    ?>
+        <script>
+            swal({
+                title: '<?php echo $swalTitle; ?>',
+                text: '<?php echo $msg; ?>',
+                confirmButtonText: "Okay",
+                customClass: 'facebook',
+                html: true,
+                type: '<?php echo $msgStatus; ?>'
+            });
+        </script>
+        <?php  $msg =''; $msgStatus ='';  } ?>
     </body>
 </html>

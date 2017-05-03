@@ -1,0 +1,25 @@
+#ErrorDocument 404 http://train2bewealthy.com/404.php
+
+ServerSignature Off
+
+#Default Language Settings
+DefaultLanguage en
+
+#Disable directory listing 
+Options All -Indexes
+
+# Force download of files
+#<FilesMatch "\.(doc|docx|xls|csv|txt|pdf)$">
+# ForceType application/octet-stream
+# Header set Content-Disposition attachment
+#</FilesMatch>
+
+RewriteEngine on
+
+RewriteCond %{HTTPS} off
+
+RewriteCond %{REQUEST_FILENAME} !-d
+
+RewriteCond %{REQUEST_FILENAME}\.php -f
+
+RewriteRule ^([^/]+)/?$ $1.php [NC,L]
