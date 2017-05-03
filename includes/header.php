@@ -63,9 +63,9 @@
                     <!-- navbar menu -->
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#home">Home</a></li>                    
+                            <li><a href="#welcome">Home</a></li>                    
                             <li><a href="#features">The Program</a></li>
-                            <li><a href="#business">Register</a></li>
+                            <li><a href="#register">Register</a></li>
                             <li><a href="#contact">Contact</a></li>
                             <li><a href="<?php echo SITE_URL; ?>store" class="underProcessing">Store</a></li>
                             <li><a href="<?php echo FACEBOOK_LINK; ?>" title="Socialize with us on Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x" style="color:blue"></i></a></li>

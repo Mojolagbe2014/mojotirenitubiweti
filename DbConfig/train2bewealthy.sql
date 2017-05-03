@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.4.15.7
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2016 at 02:42 AM
--- Server version: 5.7.9
--- PHP Version: 5.6.16
+-- Generation Time: May 03, 2017 at 03:39 AM
+-- Server version: 5.6.31
+-- PHP Version: 5.3.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `traintoinvest`
+-- Database: `train2bewealthy`
 --
 
 -- --------------------------------------------------------
@@ -26,17 +26,14 @@ SET time_zone = "+00:00";
 -- Table structure for table `admin`
 --
 
-DROP TABLE IF EXISTS `admin`;
 CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `email` varchar(200) NOT NULL,
   `username` varchar(200) NOT NULL,
   `password` varchar(500) NOT NULL,
   `role` varchar(100) NOT NULL,
-  `date_registered` date NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
+  `date_registered` date NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -54,13 +51,10 @@ INSERT INTO `admin` (`id`, `name`, `email`, `username`, `password`, `role`, `dat
 -- Table structure for table `course_brochure`
 --
 
-DROP TABLE IF EXISTS `course_brochure`;
 CREATE TABLE IF NOT EXISTS `course_brochure` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(500) NOT NULL,
-  `document` varchar(900) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  `document` varchar(900) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -77,17 +71,15 @@ INSERT INTO `course_brochure` (`id`, `name`, `document`) VALUES
 -- Table structure for table `event`
 --
 
-DROP TABLE IF EXISTS `event`;
 CREATE TABLE IF NOT EXISTS `event` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(300) NOT NULL,
   `description` text NOT NULL,
   `location` varchar(300) NOT NULL,
   `image` varchar(300) NOT NULL,
   `date_time` varchar(300) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `date_added` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -103,14 +95,11 @@ INSERT INTO `event` (`id`, `name`, `description`, `location`, `image`, `date_tim
 -- Table structure for table `faq`
 --
 
-DROP TABLE IF EXISTS `faq`;
 CREATE TABLE IF NOT EXISTS `faq` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `question` varchar(700) NOT NULL,
   `answer` text NOT NULL,
-  `date_added` date NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `question` (`question`)
+  `date_added` date NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -126,15 +115,13 @@ INSERT INTO `faq` (`id`, `question`, `answer`, `date_added`) VALUES
 -- Table structure for table `news`
 --
 
-DROP TABLE IF EXISTS `news`;
 CREATE TABLE IF NOT EXISTS `news` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(300) NOT NULL,
   `description` text NOT NULL,
   `image` varchar(300) NOT NULL,
   `status` tinyint(4) NOT NULL,
-  `date_added` datetime NOT NULL,
-  PRIMARY KEY (`id`)
+  `date_added` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -151,11 +138,9 @@ INSERT INTO `news` (`id`, `title`, `description`, `image`, `status`, `date_added
 -- Table structure for table `setting`
 --
 
-DROP TABLE IF EXISTS `setting`;
 CREATE TABLE IF NOT EXISTS `setting` (
   `name` varchar(200) NOT NULL,
-  `value` text NOT NULL,
-  PRIMARY KEY (`name`)
+  `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -170,23 +155,23 @@ INSERT INTO `setting` (`name`, `value`) VALUES
 ('ANALYTICS', '<script></script>'),
 ('COMPANY_ADDRESS', '<p><span style="background-color:rgb(255, 255, 255); color:rgb(17, 17, 17); font-family:roboto,sans-serif; font-size:16px">1-1660 Kenaston Blvd. Unit 70037 Winnipeg MB R3P 2H3 Canada</span></p>\r\n'),
 ('COMPANY_ADDRESS_GMAP', '<p><span style="background-color:rgb(255, 255, 255); color:rgb(17, 17, 17); font-family:roboto,sans-serif; font-size:16px">1-1660 Kenaston Blvd. Unit 70037 Winnipeg MB R3P 2H3 Canada</span></p>\r\n'),
-('COMPANY_EMAIL', '<p><span style="background-color:rgb(255, 255, 255); color:rgb(17, 17, 17); font-family:roboto,sans-serif; font-size:16px">admin@train2invest.com</span></p>\r\n'),
+('COMPANY_EMAIL', '<p><span style="background-color:rgb(255, 255, 255); color:rgb(17, 17, 17); font-family:roboto,sans-serif; font-size:16px">admin@train2bewealthy.com</span></p>\r\n'),
 ('COMPANY_FAX', '<p><span style="color:rgb(17, 17, 17); font-family:roboto,sans-serif; font-size:16px">204-414-9164</span></p>\r\n'),
 ('COMPANY_HOTLINE', '<p><span style="color:rgb(17, 17, 17); font-family:roboto,sans-serif; font-size:16px">+1 204-414-9106</span></p>\r\n'),
-('COMPANY_NAME', '<p>Train2Invest</p>\r\n'),
+('COMPANY_NAME', '<p>Train2BeWealthy</p>\r\n'),
 ('COMPANY_NUMBERS', '<p><span style="color:rgb(17, 17, 17); font-family:roboto,sans-serif; font-size:16px">204-414-9106</span></p>\r\n'),
-('COMPANY_OTHER_EMAILS', '<p><span style="background-color:rgb(245, 245, 245); font-family:open sans,sans-serif; font-size:12px">admin@train2invest.com</span></p>\r\n'),
+('COMPANY_OTHER_EMAILS', '<p><span style="background-color:rgb(245, 245, 245); font-family:open sans,sans-serif; font-size:12px">admin@train2bewealthy.com</span></p>\r\n'),
 ('CONTACT_US_VIDEO_HEIGHT', '<p>400</p>\r\n'),
 ('CONTACT_US_VIDEO_WIDTH', '<p>200</p>\r\n'),
 ('DRIBBBLE_LINK', '<p>https://dribbble.com/</p>\r\n'),
 ('FACEBOOK_ADMINS', '<p>0</p>\r\n'),
 ('FACEBOOK_APP_ID', '<p>0</p>\r\n'),
-('FACEBOOK_LINK', '<p>https://www.facebook.com/Train2Invest</p>\r\n'),
+('FACEBOOK_LINK', '<p>https://www.facebook.com/financialexcellence2017/</p>\r\n'),
 ('GOOGLEPLUS_LINK', '<p>https://www.plus.google.com/</p>\r\n'),
 ('LINKEDIN_LINK', '<p>https://www.linkedin.com/</p>\r\n'),
 ('PINTEREST_LINK', '<p>https://www.pinterest.com/</p>\r\n'),
 ('THE_PROGRAM', '<h2 class="section-title text-center wow fadeInDown">THE <strong class="strong-logo bigger-size">TRAIN<strong class="h2-red bigger-size">2</strong>INVEST</strong> PROGRAM</h2>\r\n\r\n<div class="col-md-12 col-lg-12 col-sm-12 text-center"><strong>TEACH, TRAIN, COACH</strong></div>\r\n&nbsp;\r\n\r\n<div class="col-md-12 col-lg-12 col-sm-12">\r\n<p><strong class="strong-logo">TRAIN<strong class="h2-red">2</strong>INVEST</strong><span> offers a COMPLETE SOLUTION in taking a novice investor to achieve a skill set that empowers them to trade with CONFIDENCE &amp; CONSISTENCY. Deliveringa step-by-step learning process that breaks down complex subject matter into manageable, bite-sized piece of information.</span></p>\r\n\r\n<p><strong class="strong-logo">TRAIN<strong class="h2-red">2</strong>INVEST</strong><span> is dedicated to helping investors excel at managing their own portfolios through a simple but complete, step-by-step education process. Our learning environment focuses on the developement of good strategies supported by solid, disciplined decision making criteria producing confident and capable investors.</span></p>\r\n\r\n<p><strong class="strong-logo">TRAIN<strong class="h2-red">2</strong>INVEST</strong><span> teaches,train &amp; coaches novice individuals/families and &#39;inconsistent&#39; experienced investors| to significantly reduce risk through knowledge (theory &amp; practical hands-on lectures), a structured investing/trading methodology(a trading plan), the use of powerful tools (charting software &amp; data feeds), and support groups (mentor &amp; coaches). It is a comprehensive approach to managing wealth productivity where synergies come from careful planning and the utilization of existing investment reserves in purposeful ways for the current and next generation(s).</span></p>\r\n</div>\r\n'),
-('THE_PROGRAM_CONTENT_1', '<div class="row">\r\n\r\n                      <div class="col-md-6 col-lg-6 col-sm-12">\r\n                          <div class="panel panel-default">\r\n                              <div class="panel-heading">\r\n                                  <h4>Basic Requirements</h4>\r\n                              </div>\r\n                              <div class="panel-body" style="min-height:405px;">\r\n                                  <ul>\r\n\r\n\r\n                                    <h4>Core competencies achieved by our students include:</h4>\r\n                                    <li><a>Capital preservation</a></li>\r\n                                    <li><a>Risk management</a></li>\r\n                                    <li><a>Money managment</a></li>\r\n                                    <li><a>Strategic wealth management</a></li>\r\n                                    <li><a>Understanding trading psychology</a></li>\r\n                                    <li><a>Fundamental analysis</a></li>\r\n                                    <li><a>Technical Analysis</a></li>\r\n                                    <li><a>Understanding the impact of globalization and trading mechanics</a></li>\r\n                                  </ul>\r\n                              </div>\r\n                          </div>\r\n                      </div>\r\n                      <div class="col-md-6 col-lg-6 col-sm-12">\r\n                          <div class="panel panel-default">\r\n                              <div class="panel-heading">\r\n                                  <h4>Synopsis</h4>\r\n                              </div>\r\n                              <div class="panel-body" style="min-height:405px;">\r\n                                  <p>In its simplest form, TRAIN2INVEST teaches individuals to buy quality blue-chip stocks and generate small, consistent returns in reasonable time horizons. (PRINCIPLE: You never lose taking a profit â€“ however small!).</p>\r\n                                  <ul>\r\n                                    <h4>The Process ANSWERS the following questions:</h4>\r\n                                    <li><a>What quality stocks to buy?</a></li>\r\n                                    <li><a>When is the best time to buy?</a></li>\r\n                                    <li><a>When to sell?</a></li>\r\n                                    <li><a>How to control your emotions?</a></li>\r\n                                    <li><a>How to mitigate losses?</a></li>\r\n                                  </ul>\r\n                                  <p>The results of a well thought out strategy following these principles means that our students can create ongoing portfolio growth without taking unreasonable risks.</p>\r\n                              </div>\r\n                          </div>\r\n                      </div>\r\n                      </div>\r\n                  <!-- /.row -->'),
+('THE_PROGRAM_CONTENT_1', '<div class="row">\r\n<div class="col-md-6 col-lg-6 col-sm-12">\r\n<div class="panel panel-default">\r\n<div class="panel-heading">\r\n<h4>Basic Requirements</h4>\r\n</div>\r\n\r\n<div class="panel-body" style="min-height:405px;">\r\n<h4>Core competencies achieved by our students include:</h4>\r\n\r\n<ul>\r\n	<li><a>Capital preservation</a></li>\r\n	<li><a>Risk management</a></li>\r\n	<li><a>Money managment</a></li>\r\n	<li><a>Strategic wealth management</a></li>\r\n	<li><a>Understanding trading psychology</a></li>\r\n	<li><a>Fundamental analysis</a></li>\r\n	<li><a>Technical Analysis</a></li>\r\n	<li><a>Understanding the impact of globalization and trading mechanics</a></li>\r\n</ul>\r\n</div>\r\n</div>\r\n</div>\r\n\r\n<div class="col-md-6 col-lg-6 col-sm-12">\r\n<div class="panel panel-default">\r\n<div class="panel-heading">\r\n<h4>Synopsis</h4>\r\n</div>\r\n\r\n<div class="panel-body" style="min-height:405px;">\r\n<p>In its simplest form, TRAIN2INVEST teaches individuals to buy quality blue-chip stocks and generate small, consistent returns in reasonable time horizons. (PRINCIPLE: You never lose taking a profit Ã¢Â€Â“ however small!).</p>\r\n\r\n<h4>The Process ANSWERS the following questions:</h4>\r\n\r\n<ul>\r\n	<li><a>What quality stocks to buy?</a></li>\r\n	<li><a>When is the best time to buy?</a></li>\r\n	<li><a>When to sell?</a></li>\r\n	<li><a>How to control your emotions?</a></li>\r\n	<li><a>How to mitigate losses?</a></li>\r\n</ul>\r\n\r\n<p>The results of a well thought out strategy following these principles means that our students can create ongoing portfolio growth without taking unreasonable risks.</p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n<!-- /.row -->'),
 ('THE_PROGRAM_CONTENT_2', '\r\n              <div class="row">\r\n\r\n                  <div class="col-md-offset-2 col-lg-offset-2 col-md-8 col-lg-8 col-sm-12">\r\n                      <div class="panel panel-default">\r\n                          <div class="panel-heading">\r\n                              <h4>Phase 1 â€“ Teaching (2.5 months)</h4>\r\n                          </div>\r\n                          <div class="panel-body min_height">\r\n\r\n                            <strong>Focuses on the foundational knowledge of the markets and decision making</strong>\r\n                            <table class="table">\r\n                              <thead class="thead-inverse">\r\n                                <tr>\r\n                                  <th>Module</th>\r\n                                  <th>Fundamental Analysis*</th>\r\n                                  <th>Technical Analysis*</th>\r\n                                </tr>\r\n                              </thead>\r\n                              <tbody>\r\n                                <tr>\r\n                                  <th scope="row">1</th>\r\n                                  <td>Financial Excellence </td>\r\n                                  <td>Technical Analysis</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">2</th>\r\n                                  <td> Economics & Geo-Politics</td>\r\n                                  <td> Technical indicators</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">3</th>\r\n                                  <td>External Events</td>\r\n                                  <td>Risk management</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">4</th>\r\n                                  <td>Fundamental Analysis</td>\r\n                                  <td>Investor Psychology</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">5</th>\r\n                                  <td>The Wealth Plan</td>\r\n                                  <td>The Trading Plan</td>\r\n                                </tr>\r\n                              </tbody>\r\n                            </table>\r\n                          </div>\r\n                      </div>\r\n                  </div>\r\n                  <div class="row">\r\n                  <div class="col-md-6 col-lg-6 col-sm-12 ">\r\n                      <div class="panel panel-default ">\r\n                          <div class="panel-heading">\r\n                              <h4>Phase 2â€“ Training (3.5 months)</h4>\r\n                          </div>\r\n                          <div class="panel-body pSameHeight">\r\n                            <strong>Focuses on the advanced knowledge of research, risk management, emotional management and money management</strong>\r\n                            <table class="table">\r\n                              <thead class="thead-inverse">\r\n                                <tr>\r\n                                  <th>Weekly Sessions</th>\r\n                                  <th>Twice Monthly Advanced Recorded Sessions</th>\r\n                                </tr>\r\n                              </thead>\r\n                              <tbody>\r\n                                <tr>\r\n\r\n                                  <td>Real-Time Market Analysis (RTMA) â€“ Focussing on events that will take place during the up-coming week: Trends; Challenges; Global Economic Events etc.</td>\r\n                                  <td>External Events â€“ impact of various market activities that impact specific sectors & probable suggestions to avoid pitfalls.</td>\r\n                                </tr>\r\n                              </tbody>\r\n                            </table>\r\n\r\n                          </div>\r\n                      </div>\r\n                  </div>\r\n                  <div class="col-md-6 col-lg-6 col-sm-12 " >\r\n                      <div class="panel panel-default  ">\r\n                          <div class="panel-heading">\r\n                              <h4>Phase 3â€“ Coaching (3.5 months)</h4>\r\n                          </div>\r\n                          <div class="panel-body pSameHeight">\r\n                            <table class="table">\r\n                              <thead class="thead-inverse">\r\n                                <tr>\r\n                                  <th></th>\r\n                                  <th><strong>Focuses on execution via ''Dummy Trading Accounts''</strong></th>\r\n                                </tr>\r\n                              </thead>\r\n                              <tbody>\r\n                                <tr>\r\n                                  <td scope="row">1</td>\r\n                                  <td>\r\n                                   Coach will go over your trading plan & review your paper trading records\r\n                                 </td>\r\n                               </tr>\r\n                               <tr>\r\n                                 <td scope="row">2</td>\r\n                                 <td>\r\n                                   How to set up trading account with your on-line broker.\r\n                                 </td>\r\n                               </tr>\r\n                               <tr>\r\n                                 <td scope="row">3</td>\r\n                                 <td>\r\n                                   How to access live data feeds from various web sites & to set up the parameters that was taught in the course.\r\n                                  </td>\r\n                                </tr>\r\n                              </tbody>\r\n                            </table>\r\n\r\n<!--\r\n                            <table >\r\n                            <tr>\r\n                            <td>Trading Plan/ Paper Trading record Review</td>\r\n                            <td><ol>\r\n                             <li>Coach will go over your trading plan & review your paper trading records</li>\r\n                             <li>How to set up trading account with your on-line broker.</li>\r\n                             <li>How to access live data feeds from various web sites & to set up the parameters that was taught in the course.</li>\r\n                            </ol>\r\n                            </td>\r\n                            </tr>\r\n                            </table> -->\r\n                          </div>\r\n                      </div>\r\n                  </div>\r\n                </div>\r\n                  </div>'),
 ('THE_PROGRAM_CONTENT_3', '\r\n              <div class="row">\r\n\r\n                  <div class="col-md-offset-2 col-lg-offset-2 col-md-8 col-lg-8 col-sm-12">\r\n                      <div class="panel panel-default">\r\n                          <div class="panel-heading">\r\n                              <h4>Phase 1 â€“ Teaching (2.5 months)</h4>\r\n                          </div>\r\n                          <div class="panel-body min_height">\r\n\r\n                            <strong>Focuses on the foundational knowledge of the markets and decision making</strong>\r\n                            <table class="table">\r\n                              <thead class="thead-inverse">\r\n                                <tr>\r\n                                  <th>Module</th>\r\n                                  <th>Fundamental Analysis*</th>\r\n                                  <th>Technical Analysis*</th>\r\n                                </tr>\r\n                              </thead>\r\n                              <tbody>\r\n                                <tr>\r\n                                  <th scope="row">1</th>\r\n                                  <td>Financial Excellence </td>\r\n                                  <td>Technical Analysis</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">2</th>\r\n                                  <td> Economics & Geo-Politics</td>\r\n                                  <td> Technical indicators</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">3</th>\r\n                                  <td>External Events</td>\r\n                                  <td>Risk management</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">4</th>\r\n                                  <td>Fundamental Analysis</td>\r\n                                  <td>Investor Psychology</td>\r\n                                </tr>\r\n                                <tr>\r\n                                  <th scope="row">5</th>\r\n                                  <td>The Wealth Plan</td>\r\n                                  <td>The Trading Plan</td>\r\n                                </tr>\r\n                              </tbody>\r\n                            </table>\r\n                          </div>\r\n                      </div>\r\n                  </div>\r\n                  <div class="row">\r\n                  <div class="col-md-6 col-lg-6 col-sm-12 ">\r\n                      <div class="panel panel-default ">\r\n                          <div class="panel-heading">\r\n                              <h4>Phase 2â€“ Training (3.5 months)</h4>\r\n                          </div>\r\n                          <div class="panel-body pSameHeight">\r\n                            <strong>Focuses on the advanced knowledge of research, risk management, emotional management and money management</strong>\r\n                            <table class="table">\r\n                              <thead class="thead-inverse">\r\n                                <tr>\r\n                                  <th>Weekly Sessions</th>\r\n                                  <th>Twice Monthly Advanced Recorded Sessions</th>\r\n                                </tr>\r\n                              </thead>\r\n                              <tbody>\r\n                                <tr>\r\n\r\n                                  <td>Real-Time Market Analysis (RTMA) â€“ Focussing on events that will take place during the up-coming week: Trends; Challenges; Global Economic Events etc.</td>\r\n                                  <td>External Events â€“ impact of various market activities that impact specific sectors & probable suggestions to avoid pitfalls.</td>\r\n                                </tr>\r\n                              </tbody>\r\n                            </table>\r\n\r\n                          </div>\r\n                      </div>\r\n                  </div>\r\n                  <div class="col-md-6 col-lg-6 col-sm-12 " >\r\n                      <div class="panel panel-default  ">\r\n                          <div class="panel-heading">\r\n                              <h4>Phase 3â€“ Coaching (3.5 months)</h4>\r\n                          </div>\r\n                          <div class="panel-body pSameHeight">\r\n                            <table class="table">\r\n                              <thead class="thead-inverse">\r\n                                <tr>\r\n                                  <th></th>\r\n                                  <th><strong>Focuses on execution via ''Dummy Trading Accounts''</strong></th>\r\n                                </tr>\r\n                              </thead>\r\n                              <tbody>\r\n                                <tr>\r\n                                  <td scope="row">1</td>\r\n                                  <td>\r\n                                   Coach will go over your trading plan & review your paper trading records\r\n                                 </td>\r\n                               </tr>\r\n                               <tr>\r\n                                 <td scope="row">2</td>\r\n                                 <td>\r\n                                   How to set up trading account with your on-line broker.\r\n                                 </td>\r\n                               </tr>\r\n                               <tr>\r\n                                 <td scope="row">3</td>\r\n                                 <td>\r\n                                   How to access live data feeds from various web sites & to set up the parameters that was taught in the course.\r\n                                  </td>\r\n                                </tr>\r\n                              </tbody>\r\n                            </table>\r\n\r\n<!--\r\n                            <table >\r\n                            <tr>\r\n                            <td>Trading Plan/ Paper Trading record Review</td>\r\n                            <td><ol>\r\n                             <li>Coach will go over your trading plan & review your paper trading records</li>\r\n                             <li>How to set up trading account with your on-line broker.</li>\r\n                             <li>How to access live data feeds from various web sites & to set up the parameters that was taught in the course.</li>\r\n                            </ol>\r\n                            </td>\r\n                            </tr>\r\n                            </table> -->\r\n                          </div>\r\n                      </div>\r\n                  </div>\r\n                </div>\r\n                  </div>\r\n              <!-- /.row -->'),
 ('THE_PROGRAM_MENU_1', '<p>BASIC REQUIREMENTS</p>\r\n'),
@@ -195,7 +180,15 @@ INSERT INTO `setting` (`name`, `value`) VALUES
 ('TOTAL_DISPLAYABLE_TESTIMONIAL', '50'),
 ('TWITTER_ID', '<p>0</p>\r\n'),
 ('TWITTER_LINK', '<p>https://twitter.com/</p>\r\n'),
-('WELCOME_MESSAGE', '<div class="col-lg-6"><strong class="strong-logo">TRAIN<strong class="h2-red">2</strong>INVEST</strong><span> is attempting to transform Canadian families in the arena of wealth building and more importantly wealth management! Think about this:</span>\r\n\r\n<h3>WHO TAUGHT US WEALTH MANAGEMENT?</h3>\r\n\r\n<h3><span>Did we learn about managing wealth:</span></h3>\r\n\r\n<ul>\r\n	<li><a href="#">From School?</a></li>\r\n	<li><a href="#">From Parents?</a></li>\r\n	<li><a href="#">From Friends?</a></li>\r\n	<li><a href="#">From Books/Seminars?</a></li>\r\n	<li><a href="#">From Universities/Colleges?</a></li>\r\n</ul>\r\n<strong>Answer: </strong><span>Usually through OSMOSIS - from a combination of the above <strong>OR</strong> more likely through <strong>TRIAL &amp; ERROR.</strong></span></div>\r\n\r\n<div class="col-lg-6"><strong>WHAT IF:</strong><br />\r\n<span>You had a personal TEACHER, TRAINER and a COACH that taught you and continues to mentor you on how to manage your savings(incl. PRSP/TFSA etc) so that has your money was working for you!</span><br />\r\n<br />\r\n<span>OK...too old...don&#39;t know math...too busy. These are ALL excuses!</span><br />\r\n<br />\r\n<span>The <strong class="strong-logo">TRAIN<strong class="h2-red">2</strong>INVEST</strong> strategy ensures that a person with Grade 12 education or someone with 10 years of working experience(street smarts) is able not only to comprehend investment concepts but who can execute them within 6 months!</span><br />\r\n<br />\r\n<span>How can we be sure?? We have thousands of clients just like you!</span><br />\r\n<a href="#testimonial">Check out our testimonials!</a></div>\r\n'),
+('WELCOME_CONTENT_1', 'As soon as INCOME = EXPENDITURE, the individual (or family) is headed for bankruptcy! They are ONE crisis away from disaster.&nbsp;<br />\r\n&nbsp;'),
+('WELCOME_CONTENT_2', 'At this point, FEAR RULES &amp; all other options are blinded.<br />\r\nThey are stuck in a job where they will put up with all kinds of situations &ndash; possible abusive bosses; working late hours without additional pay; taking on extra work loads aimed at pleasing the boss/employer (hoping they will be looked on favourably if a slow down occurs). Etc.&nbsp;<br />\r\nHowever, there some people &ndash; despite their financial condition &ndash; tend to keep their jobs for a number of reasons e.g. job-title (Vice-President); the job defines them (Auditor) etc. These are really sociopaths (i.e. psychologically challenged).&nbsp;<br />\r\n&nbsp;'),
+('WELCOME_CONTENT_3', 'The primary reason that they cannot &lsquo;leave&rsquo; their job is due to the heavy debt burden that they carry. This could be to numerous reasons: some not due their own faults and others primarily due to their own desires.<br />\r\n<u>Acts of Nature:</u> Sickness to parents (borrowing to meet specific needs &ndash; medications etc.); House damage not covered by insurance. Etc.<br />\r\n<u>Self Imposed Debt:</u> Greed &ndash; instant gratification (buying on installment); student loan debt (getting a degree in underground water bubbling &amp; cannot find a job); buying a house (90% financed); buying a car (95% financed); Credit cards etc.<br />\r\n&nbsp;'),
+('WELCOME_CONTENT_4', 'TRAIN2BWEALTHY has put together a program called FINANCIAL EXCELLENCE seminars to assist individuals/families to get out of the Salary Salve Syndrome by:\r\n<ul style="list-style-type:circle;">\r\n	<li>Creating additional Cash Flow AND</li>\r\n	<li>Building Long-Term Wealth</li>\r\n</ul>\r\nFor details CLICK on THE PROGRAM tab<br />\r\n&nbsp;'),
+('WELCOME_MENU_1', 'Truth'),
+('WELCOME_MENU_2', 'Result'),
+('WELCOME_MENU_3', 'Debt'),
+('WELCOME_MENU_4', 'Solution'),
+('WELCOME_MESSAGE', 'The majority of Canadians are living from pay-check to pay-check! The main reason for this dilemma is &lsquo;a TRIPLE &ldquo;S&rdquo; mind-set&rsquo; i.e. The Salary Salve Syndrome.<br />\r\n&nbsp;<br />\r\nMoney is a TOOL, a TRIAL and a TEST.<br />\r\nTo expose a person&rsquo;s true character, give them access to large sums of money. Money reveals the heart and the quality of character.<br />\r\nHOWEVER, money is a necessity -&nbsp; it is necessary for life and required for living.<br />\r\nMoney explains everything:\r\n<ul style="list-style-type: circle; margin-left: 40px;">\r\n	<li>The POOR want it.</li>\r\n	<li>The RICH horde it.</li>\r\n	<li>It controls those who cannot control it.</li>\r\n	<li>It destroys those who love it.</li>\r\n	<li>The average man works for it.</li>\r\n	<li>The Wise man makes it work for him.</li>\r\n</ul>\r\n&nbsp;<br />\r\nAll human beings have a unique set of principles they live by and that is why money means different things to different people. Money takes on what ever significance you give it. Taking the time to identify your values will help you understand what is actually important about money to you.&nbsp; Because you are a creature of emotion, what you do is an extension what is important to you &ndash; the heart of every matter is the heart of the matter &ndash; <em>For out of the abundance of his heart, his mouth speaks: King Solomon.</em><br />\r\nNot two persons are exactly alike. Neither are the principles they choose to live by. But all live from the heart. This is precisely why you must take time to understand what is most important to you about money.<br />\r\nWealth isn&rsquo;t about money only. Wealth is a GIFT &ndash; you should safeguard it; nurture it; and share it productively. Everyone and each family has its own beliefs and unique circumstances relating to wealth management.<br />\r\nWhat is the &lsquo;Salary Slave Syndrome&rsquo;?&nbsp;<br />\r\n&nbsp;<br />\r\nSlaves to wages!<br />\r\nThe gist of this phenomena is that an individual (or both spouses) get to a point in their life where if they did not receive the income that they currently are getting - they will end up in bankruptcy!&nbsp;<br />\r\n&nbsp;'),
 ('YOUTUBE_LINK', '<p>https://www.youtube.com/</p>\r\n');
 
 -- --------------------------------------------------------
@@ -204,16 +197,14 @@ INSERT INTO `setting` (`name`, `value`) VALUES
 -- Table structure for table `slider`
 --
 
-DROP TABLE IF EXISTS `slider`;
 CREATE TABLE IF NOT EXISTS `slider` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `title` varchar(400) NOT NULL,
   `content` text NOT NULL,
   `image` varchar(300) NOT NULL,
   `orders` int(11) NOT NULL,
-  `status` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+  `status` tinyint(4) NOT NULL
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `slider`
@@ -231,13 +222,11 @@ INSERT INTO `slider` (`id`, `title`, `content`, `image`, `orders`, `status`) VAL
 -- Table structure for table `testimonial`
 --
 
-DROP TABLE IF EXISTS `testimonial`;
 CREATE TABLE IF NOT EXISTS `testimonial` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `content` text NOT NULL,
   `author` varchar(500) NOT NULL,
-  `image` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`)
+  `image` varchar(300) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
@@ -256,14 +245,11 @@ INSERT INTO `testimonial` (`id`, `content`, `author`, `image`) VALUES
 -- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(300) NOT NULL,
   `email` varchar(200) NOT NULL,
-  `company` text NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `email` (`email`)
+  `company` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
@@ -280,14 +266,11 @@ INSERT INTO `user` (`id`, `name`, `email`, `company`) VALUES
 -- Table structure for table `video`
 --
 
-DROP TABLE IF EXISTS `video`;
 CREATE TABLE IF NOT EXISTS `video` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(200) NOT NULL,
   `description` text NOT NULL,
-  `video` varchar(300) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`)
+  `video` varchar(300) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
@@ -304,16 +287,12 @@ INSERT INTO `video` (`id`, `name`, `description`, `video`) VALUES
 -- Table structure for table `webpage`
 --
 
-DROP TABLE IF EXISTS `webpage`;
 CREATE TABLE IF NOT EXISTS `webpage` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `name` varchar(500) NOT NULL,
   `title` varchar(500) NOT NULL,
   `description` varchar(700) NOT NULL,
-  `keywords` text NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
-  UNIQUE KEY `title` (`title`)
+  `keywords` text NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -323,6 +302,137 @@ CREATE TABLE IF NOT EXISTS `webpage` (
 INSERT INTO `webpage` (`id`, `name`, `title`, `description`, `keywords`) VALUES
 (1, 'home', 'Home', 'We are attempting to transform Canadian families in the arena of wealth building and more importantly wealth management', 'wealth, building, train, management, transform');
 
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `course_brochure`
+--
+ALTER TABLE `course_brochure`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `faq`
+--
+ALTER TABLE `faq`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `question` (`question`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `setting`
+--
+ALTER TABLE `setting`
+  ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `slider`
+--
+ALTER TABLE `slider`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `testimonial`
+--
+ALTER TABLE `testimonial`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email` (`email`);
+
+--
+-- Indexes for table `video`
+--
+ALTER TABLE `video`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`);
+
+--
+-- Indexes for table `webpage`
+--
+ALTER TABLE `webpage`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `name` (`name`),
+  ADD UNIQUE KEY `title` (`title`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `course_brochure`
+--
+ALTER TABLE `course_brochure`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `faq`
+--
+ALTER TABLE `faq`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `news`
+--
+ALTER TABLE `news`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `slider`
+--
+ALTER TABLE `slider`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `testimonial`
+--
+ALTER TABLE `testimonial`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `video`
+--
+ALTER TABLE `video`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `webpage`
+--
+ALTER TABLE `webpage`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

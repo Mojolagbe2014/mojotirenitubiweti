@@ -108,60 +108,15 @@ if(isset($_POST['submit'])){
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse">
-        <?php include('includes/pre-loader.php'); ?>
+        <?php include('includes/preloader.php'); ?>
 
         <div class="culmn">
             
             <?php include('includes/header.php'); ?>
 
-            <?php include('includes/homepage-slider.php'); ?>
+            <?php include('includes/slider.php'); ?>
             
-            <!--Featured Section-->
-            <section id="features" class="features">
-                <div class="container">
-                    <div class="row">
-                        <div class="main_features fix roomy-70">
-                            <div class="col-md-4">
-                                <div class="features_item sm-m-top-30">
-                                    <div class="f_item_icon">
-                                        <i class="fa fa-thumbs-o-up"></i>
-                                    </div>
-                                    <div class="f_item_text">
-                                        <h3>Best Quality Design</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque eleifend
-                                            in sit amet mattis volutpat rhoncus.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="features_item sm-m-top-30">
-                                    <div class="f_item_icon">
-                                        <i class="fa fa-tablet"></i>
-                                    </div>
-                                    <div class="f_item_text">
-                                        <h3>Responsive Design</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque eleifend
-                                            in sit amet mattis volutpat rhoncus.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="features_item sm-m-top-30">
-                                    <div class="f_item_icon">
-                                        <i class="fa fa-sliders"></i>
-                                    </div>
-                                    <div class="f_item_text">
-                                        <h3>Easy to Customize</h3>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit pellentesque eleifend
-                                            in sit amet mattis volutpat rhoncus.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div><!-- End off row -->
-                </div><!-- End off container -->
-            </section><!-- End off Featured Section-->
-
+            <?php include('includes/welcome.php'); ?>
 
             <!--Business Section-->
             <section id="business" class="business bg-grey roomy-70">
@@ -513,7 +468,7 @@ if(isset($_POST['submit'])){
                             </div>
                             <div class="col-md-4">
                                 <div class="action_btn text-left sm-text-center">
-                                    <a href="" class="btn btn-default">Purchase Now</a>
+                                    <a href="#register" class="btn btn-default">Register Now</a>
                                 </div>
                             </div>
                         </div>
