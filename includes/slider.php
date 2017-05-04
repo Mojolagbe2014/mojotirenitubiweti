@@ -13,7 +13,7 @@
                                             <h3 class="text-white">- We Create a <strong>Power</strong>  To Prosper -</h3>
                                         </div>
 
-                                        <div class="home_btns m-top-40">
+                                        <div class="home_btns m-top-40 inner-link">
                                             <a href="#register" class="btn btn-primary m-top-20">Register Now</a>
                                             <a href="#program" class="btn btn-default m-top-20">Take a Tour</a>
                                         </div>
@@ -25,7 +25,7 @@
                                             <h3 class="text-white">- We Create a <strong>Concept</strong> into The Market -</h3>
                                         </div>
 
-                                        <div class="home_btns m-top-40">
+                                        <div class="home_btns m-top-40 inner-link">
                                             <a href="#register" class="btn btn-primary m-top-20">Register Now</a>
                                             <a href="#program" class="btn btn-default m-top-20">Take a Tour</a>
                                         </div>
@@ -37,7 +37,7 @@
                                             <h3 class="text-white">- We organize <strong>seminars</strong> to get  you out of the Salary Slave Syndrome -</h3>
                                         </div>
 
-                                        <div class="home_btns m-top-40">
+                                        <div class="home_btns m-top-40 inner-link">
                                             <a href="#register" class="btn btn-primary m-top-20">Register Now</a>
                                             <a href="#program" class="btn btn-default m-top-20">Take a Tour</a>
                                         </div>

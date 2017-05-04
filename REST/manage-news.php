@@ -20,7 +20,7 @@ else{
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){
             switch($postVar){
-                case 'image':   $newsObj->$postVar = basename($_FILES["image"]["name"]) ? rand(100000, 1000000)."_". utf8_encode(strtolower(str_replace(" ", "_", filter_input(INPUT_POST, 'title')))).".".pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION): ""; 
+                case 'image':   $newsObj->$postVar = basename($_FILES["image"]["name"]) ? rand(100000, 1000000)."_". utf8_encode(strtolower(str_replace(" ", "_", filter_input(INPUT_POST, '__')))).".".pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION): ""; 
                                 $newsImage = $newsObj->$postVar;
                                 if($newsObj->$postVar == "") {array_push ($errorArr, "Please enter $postVar ");}
                                 break;
@@ -132,7 +132,7 @@ else{
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){
             switch($postVar){
-                case 'image':   $newsObj->$postVar = basename($_FILES["image"]["name"]) ? rand(100000, 1000000)."_". utf8_encode(strtolower(str_replace(" ", "_", filter_input(INPUT_POST, 'title')))).".".pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION): ""; 
+                case 'image':   $newsObj->$postVar = basename($_FILES["image"]["name"]) ? rand(100000, 1000000)."_". utf8_encode(strtolower(str_replace(" ", "_", filter_input(INPUT_POST, '__')))).".".pathinfo(basename($_FILES["image"]["name"]),PATHINFO_EXTENSION): ""; 
                                 $newImage = $newsObj->$postVar;
                                 if($newsObj->$postVar == "") { $newsObj->$postVar = $oldImage;}
                                 break;

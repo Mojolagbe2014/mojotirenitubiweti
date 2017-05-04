@@ -6,20 +6,20 @@
                             <div class="col-md-6">
                                 <div class="navbar-callus text-left sm-text-center">
                                     <ul class="list-inline">
-                                        <li><a href=""><i class="fa fa-phone"></i> Call us: 1234 5678 90</a></li>
-                                        <li><a href=""><i class="fa fa-envelope-o"></i> Contact us: your@email.com</a></li>
+                                        <li><a href=""><i class="fa fa-phone"></i> Call us: <?php echo COMPANY_HOTLINE; ?></a></li>
+                                        <li><a href=""><i class="fa fa-envelope-o"></i> Contact us: <?php echo COMPANY_EMAIL; ?></a></li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="navbar-socail text-right sm-text-center">
                                     <ul class="list-inline">
-                                        <li><a href=""><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href=""><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href=""><i class="fa fa-linkedin"></i></a></li>
-                                        <li><a href=""><i class="fa fa-google-plus"></i></a></li>
-                                        <li><a href=""><i class="fa fa-behance"></i></a></li>
-                                        <li><a href=""><i class="fa fa-dribbble"></i></a></li>
+                                        <li><a href="<?php echo FACEBOOK_LINK; ?>" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="<?php echo TWITTER_LINK; ?>" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                        <li><a href="<?php echo LINKEDIN_LINK; ?>" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+                                        <li><a href="<?php echo GOOGLEPLUS_LINK; ?>" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                        <li><a href="<?php echo YOUTUBE_LINK; ?>" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                                        <li><a href="<?php echo DRIBBBLE_LINK; ?>" target="_blank"><i class="fa fa-dribbble"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                     <div class="collapse navbar-collapse" id="navbar-menu">
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#welcome">Home</a></li>                    
-                            <li><a href="#features">The Program</a></li>
+                            <li><a href="#program-intro">The Program</a></li>
                             <li><a href="#register">Register</a></li>
                             <li><a href="#contact">Contact</a></li>
                             <li><a href="<?php echo SITE_URL; ?>store" class="underProcessing">Store</a></li>

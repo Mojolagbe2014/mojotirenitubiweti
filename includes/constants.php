@@ -1,6 +1,6 @@
 <?php
 /** Database Connection Strings */
-define("SITE_URL","http://localhost/mojotirenitoinfesiti/");
+define("SITE_URL","http://localhost/mojotirenitubiweti/");
 define("SITE_URL1","http://localhost");
 define("DB_NAME","train2bewealthy"); //iadet910_iadetmobile
 define("DB_USER","root");//iadet910_mobile
