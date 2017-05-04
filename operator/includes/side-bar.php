@@ -11,11 +11,11 @@
                         </ul>
                     </li>
                     <?php } ?>
-                    <li> <a href="#"><i class="fa fa-file fa-2x"></i> Brochure Manager<span class="fa arrow"></span></a>
+<!--                    <li> <a href="#"><i class="fa fa-file fa-2x"></i> Brochure Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-brochures">Manage Brochures</a> </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <li> <a href="#"><i class="fa fa-user fa-2x"></i> Subscribers<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-subscribers">Manage Subscribers</a> </li>
@@ -32,9 +32,9 @@
                             <li> <a href="manage-faq">Manage FAQs</a> </li>
                         </ul>
                     </li>
-                    <li> <a href="#"><i class="fa fa-bell-o fa-2x"></i> Breaking News<span class="fa arrow"></span></a>
+                    <li> <a href="#"><i class="fa fa-bell-o fa-2x"></i> The Program Intro<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="manage-news">Manage News</a> </li>
+                            <li> <a href="manage-news">Manage Program Intro</a> </li>
                         </ul>
                     </li>
                     <li> <a href="#"><i class="fa fa-quote-left fa-2x"></i> Testimonials Manager<span class="fa arrow"></span></a>
@@ -48,12 +48,12 @@
                             <li> <a href="manage-gallery">Manage Gallery</a> </li>
                         </ul>
                     </li>
-                    <li> <a href="#"><i class="fa fa-video-camera fa-2x"></i> Video Manager<span class="fa arrow"></span></a>
+<!--                    <li> <a href="#"><i class="fa fa-video-camera fa-2x"></i> Video Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-videos">Add Video</a> </li>
                             <li> <a href="manage-videos">Manage Videos</a> </li>
                         </ul>
-                    </li>
+                    </li>-->
                     <?php if(isset($_SESSION['ITCadminEmail']) && $_SESSION['ITCadminEmail'] == trim(stripcslashes(strip_tags(Setting::getValue($dbObj, 'COMPANY_EMAIL'))))) { ?>
                     <li> <a href="#"><i class="fa fa-cog fa-2x"></i>Settings Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">

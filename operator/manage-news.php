@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Breaking News  - Train2Invest</title>
+    <title>Manage The Program Intros  - Train2BeWealthy</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
@@ -38,7 +38,7 @@ $errorArr = array(); //Array of errors
                     <div class="col-md-12">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
-                                <h3>All Breaking News</h3>
+                                <h3>All Program Intros</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -53,7 +53,7 @@ $errorArr = array(); //Array of errors
                                                     <button class="btn btn-danger btn-sm multi-delete-news multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
                                                     </div>
                                                 </th>
-                                                <th>News</th>
+                                                <th>The Program Intro</th>
                                                 <th>Image</th>
                                                 <th>Content</th>
                                                 <th>Date Added</th>
@@ -67,12 +67,12 @@ $errorArr = array(); //Array of errors
                         <div class="messageBox"></div>
                         <div class="panel panel-info" id="hiddenUpdateForm">
                             <div class="panel-heading">
-                                <h3 id="multiHeader">Add Breaking News</h3>
+                                <h3 id="multiHeader">Add Program Intro</h3>
                             </div>
                             <div class="panel-body">
                                 <form role="form" method="POST" id="CreateNews" name="CreateNews" action="../REST/manage-news.php"  enctype="multipart/form-data">
                                     <div class="form-group">
-                                        <label class="control-label" for="title">News Title:</label>
+                                        <label class="control-label" for="title">Program Intro Title:</label>
                                         <div class="controls">
                                             <input type="hidden" id="id" name="id"> 
                                             <textarea id="title" name="title" placeholder="News Name" class="form-control"></textarea>
@@ -80,7 +80,7 @@ $errorArr = array(); //Array of errors
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label" for="image">News Image:</label>
+                                        <label class="control-label" for="image"> Image:</label>
                                         <div class="controls">
                                             <input type="hidden" name="oldImage" id="oldImage" />
                                             <input data-title="" type="file" placeholder="" id="image" name="image" class="form-control">
@@ -100,7 +100,7 @@ $errorArr = array(); //Array of errors
                                     <div class="form-group">
                                         <div class="controls">
                                             <input type="hidden" name="addNewNews" id="addNewNews" value="addNewNews"/>
-                                            <button type="submit" class="btn btn-success" id="multi-action-newsAddEdit">Add News</button> &nbsp; &nbsp;
+                                            <button type="submit" class="btn btn-success" id="multi-action-newsAddEdit">Add Program Intro</button> &nbsp; &nbsp;
                                         </div>
                                     </div>
                                 </form>

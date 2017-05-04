@@ -219,8 +219,8 @@ $(document).ready(function(){
     
     function editNews(id, title, description, image){//,
         $('form #addNewNews').val('editNews');
-        $('form #multi-action-newsAddEdit').text('Update News');
-        $('#multiHeader').html('Edit "<i style="font-weight:normal;">'+name+'</i>"');
+        $('form #multi-action-newsAddEdit').text('Update Program Intro');
+        $('#multiHeader').html('Edit "<i style="font-weight:normal;">'+title+'</i>"');
         var formVar = {id:id, title:title, image:image};
         $.each(formVar, function(key, value) { 
             if(key == 'image') { $('form #oldImage').val(value); $('form #oldImageSource').html('<img src="../media/news/'+value+'" style="width:80px;height:60px;" />'); $('form #oldImageComment').text(value).css('color','red');} 
