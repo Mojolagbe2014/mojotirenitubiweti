@@ -28,7 +28,7 @@
                 </div>
 
                 <!-- Start Top Search -->
-                <div class="top-search">
+<!--                <div class="top-search">
                     <div class="container">
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-search"></i></span>
@@ -36,16 +36,16 @@
                             <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- End Top Search -->
 
 
                 <div class="container"> 
-                    <div class="attr-nav">
+<!--                    <div class="attr-nav">
                         <ul>
                             <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         </ul>
-                    </div> 
+                    </div> -->
 
                     <!-- Start Header Navigation -->
                     <div class="navbar-header">
