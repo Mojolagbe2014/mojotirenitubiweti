@@ -8,12 +8,12 @@ $dbObj = new Database();//Instantiate database
 $adminObj = new Admin($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 ?>
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Sliders  - Train2Invest</title>
+    <title>Manage Sliders  - Train2BeWealthy</title>
     <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
@@ -78,19 +78,20 @@ $errorArr = array(); //Array of errors
                                     <div class="form-group">
                                         <label class="control-label" for="content">Content:</label>
                                         <div class="controls">
+                                            <input type="hidden" id="id" name="id" value=""/>
                                             <textarea id="content" placeholder="Content" name="content" class="form-control"></textarea>
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group">
+<!--                                    <div class="form-group">
                                         <label class="control-label" for="image">Image:</label>
                                         <div class="controls">
                                             <input type="hidden" id="oldImage" name="oldImage" value=""/>
-                                            <input type="hidden" id="id" name="id" value=""/>
+                                            
                                             <input data-title="slider image" type="file" placeholder="slider image" id="image" name="image" data-original-title="Slider Image" class="form-control">
                                             <br/><span>Old Image: <strong id="oldImageComment"></strong></span><div id="oldImageSource"></div>
                                         </div>
-                                    </div>
+                                    </div>-->
 
                                     <div class="form-group">
                                         <label class="control-label" for="orders">Order:</label>

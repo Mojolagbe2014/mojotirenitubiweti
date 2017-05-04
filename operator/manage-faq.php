@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Frequently Ask Questions  - Train2Invest</title>
+    <title>Manage Frequently Ask Questions  - Train2BeWealthy</title>
     <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />

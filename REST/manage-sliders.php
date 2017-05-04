@@ -46,7 +46,7 @@ else{
             switch($postVar){
                 case 'image':   $sliderObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 $sliderImage = $sliderObj->$postVar;
-                                if($sliderObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}
+                                //if($sliderObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}
                                 break;
                 default     :   $sliderObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 if($sliderObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}

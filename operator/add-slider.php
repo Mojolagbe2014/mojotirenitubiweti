@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Slider  - Train2Invest</title>
+    <title>Add Slider  - Train2BeWealthy</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
@@ -53,12 +53,12 @@ $errorArr = array(); //Array of errors
                                         </div>
                                     </div>
                                     
-                                    <div class="form-group">
+<!--                                    <div class="form-group">
                                         <label class="control-label" for="image">Image:</label>
                                         <div class="controls">
-                                            <input data-title="slider image" type="file" placeholder="slider image" id="image" name="image" data-original-title="Slider Image" class="form-control" required="required">
+                                            <input data-title="slider image" type="file" placeholder="slider image" id="image" name="image" data-original-title="Slider Image" class="form-control">
                                         </div>
-                                    </div>
+                                    </div>-->
                                     
                                     <div class="form-group">
                                         <label class="control-label" for="orders">Order:</label>

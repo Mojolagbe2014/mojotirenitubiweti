@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add Gallery Image  - Train2Invest</title>
+    <title>Add Gallery Image  - Train2BeWealthy</title>
     <link href="media-uploader/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
     <link href="media-uploader/css/uploader.css" rel="stylesheet" type="text/css"/>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />

@@ -39,7 +39,7 @@ class Slider implements ContentManipulator{
     public function add(){
         $sql = "INSERT INTO ".self::$tableName." (title, content, image, orders, status) "
                 ."VALUES ('{$this->title}','{$this->content}','{$this->image}','{$this->orders}','{$this->status}')";
-        if($this->notEmpty($this->title,$this->content,$this->image,$this->orders)){
+        if($this->notEmpty($this->title,$this->content,$this->orders)){
             $result = self::$dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, slider successfully added!"); }
             else{ $json = array("status" => 2, "msg" => "Error adding slider! ".  mysqli_error(self::$dbObj->connection)); }
