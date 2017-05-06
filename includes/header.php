@@ -52,9 +52,9 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
                             <i class="fa fa-bars"></i>
                         </button>
-                        <a class="navbar-brand" href="#brand">
-                            <img src="assets/images/logo.png" class="logo" alt="">
-                            <!--<img src="assets/images/footer-logo.png" class="logo logo-scrolled" alt="">-->
+                        <a class="navbar-brand" href="">
+                            <img src="assets/images/favicon.png" class="logo" alt="logo" style="width:400px; height:100px">
+                            <img src="assets/images/logo-mobile.png" class="logo-mobile" alt="Logo">
                         </a>
 
                     </div>

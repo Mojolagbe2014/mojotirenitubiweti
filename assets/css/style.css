@@ -1342,3 +1342,17 @@ work Section style
     color: #ddd;
     padding: 5px;
 }
+
+@media only screen and (max-width: 768px){
+    .navbar-brand > img {
+        display: none;
+    }
+    .navbar-brand > img.logo-mobile {
+        display: block; width:200px; height:40px; margin-top: -10px;
+    }
+}
+@media only screen and (min-width: 768px){
+    .navbar-brand > img.logo-mobile {
+        display: none; 
+    }
+}
