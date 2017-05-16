@@ -6,8 +6,8 @@
                             <div class="col-md-6">
                                 <div class="navbar-callus text-left sm-text-center">
                                     <ul class="list-inline">
-                                        <li><a href=""><i class="fa fa-phone"></i> Call us: <?php echo COMPANY_HOTLINE; ?></a></li>
-                                        <li><a href=""><i class="fa fa-envelope-o"></i> Contact us: <?php echo COMPANY_EMAIL; ?></a></li>
+                                        <li><a href="tel:<?php echo COMPANY_HOTLINE; ?>"><i class="fa fa-phone"></i> Call us: <?php echo COMPANY_HOTLINE; ?></a></li>
+                                        <li><a href="mailto:<?php echo COMPANY_EMAIL; ?>"><i class="fa fa-envelope-o"></i> Contact us: <?php echo COMPANY_EMAIL; ?></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -53,7 +53,7 @@
                             <i class="fa fa-bars"></i>
                         </button>
                         <a class="navbar-brand" href="">
-                            <img src="assets/images/favicon.png" class="logo" alt="logo" style="width:400px; height:100px">
+                            <img src="assets/images/favicon.png" class="logo" alt="logo" style="width:300px; height:80px">
                             <img src="assets/images/logo-mobile.png" class="logo-mobile" alt="Logo">
                         </a>
 

@@ -5,26 +5,26 @@
                         <div class="widget_area">
                             <div class="col-md-6">
                                 <div class="widget_item widget_about">
-                                    <h5 class="text-white">About Us</h5>
+                                    <h5 class="text-green">About Us</h5>
                                     <p class="m-top-20"><?php echo Setting::getValue($dbObj, 'ABOUT_US') ? strip_tags(Setting::getValue($dbObj, 'ABOUT_US'), '<br/>') : ''; ?></p>
                                     <div class="widget_ab_item m-top-30">
                                         <div class="item_icon"><i class="fa fa-location-arrow"></i></div>
                                         <div class="widget_ab_item_text">
-                                            <h6 class="text-white">Location</h6>
+                                            <h6 class="text-green">Location</h6>
                                             <p><?php echo COMPANY_ADDRESS; ?></p>
                                         </div>
                                     </div>
                                     <div class="widget_ab_item m-top-30">
                                         <div class="item_icon"><i class="fa fa-phone"></i></div>
                                         <div class="widget_ab_item_text">
-                                            <h6 class="text-white">Phone :</h6>
+                                            <h6 class="text-green">Phone :</h6>
                                             <p><?php echo COMPANY_HOTLINE; ?></p>
                                         </div>
                                     </div>
                                     <div class="widget_ab_item m-top-30">
                                         <div class="item_icon"><i class="fa fa-envelope-o"></i></div>
                                         <div class="widget_ab_item_text">
-                                            <h6 class="text-white">Email Address :</h6>
+                                            <h6 class="text-green">Email Address :</h6>
                                             <p><?php echo COMPANY_EMAIL; ?></p>
                                         </div>
                                     </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="main_footer fix bg-mega text-center p-top-40 p-bottom-30 m-top-80">
                     <div class="col-md-12">
-                        <p class="wow fadeInRight" data-wow-duration="1s">
+                        <p class="wow fadeInRigh text-white" data-wow-duration="1s">
                             Developed  by:  
                             <a href="http://timca.6te.net" target="_blank" rel="nofollow">TIMCA Computers Inc</a> 
                             &copy; <?php $currYear   = new DateTime(); echo $currYear->format('Y'); ?>. All Rights Reserved

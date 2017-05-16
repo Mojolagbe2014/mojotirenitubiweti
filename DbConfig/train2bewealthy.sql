@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 04, 2017 at 04:42 AM
+-- Generation Time: May 16, 2017 at 01:39 AM
 -- Server version: 5.6.31
 -- PHP Version: 5.3.29
 
@@ -122,7 +122,7 @@ CREATE TABLE IF NOT EXISTS `news` (
   `image` varchar(300) NOT NULL,
   `status` tinyint(4) NOT NULL,
   `date_added` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `news`
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `testimonial` (
   `content` text NOT NULL,
   `author` varchar(500) NOT NULL,
   `image` varchar(300) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `testimonial`
@@ -395,7 +395,7 @@ ALTER TABLE `faq`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `slider`
 --
@@ -405,7 +405,7 @@ ALTER TABLE `slider`
 -- AUTO_INCREMENT for table `testimonial`
 --
 ALTER TABLE `testimonial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `user`
 --

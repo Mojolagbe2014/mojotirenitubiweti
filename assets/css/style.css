@@ -1343,6 +1343,12 @@ work Section style
     padding: 5px;
 }
 
+.head_title h5, body { color: #000000;}
+
+.widget_about {color: #ffffff}
+
+.text-green {color: #00a885}
+
 @media only screen and (max-width: 768px){
     .navbar-brand > img {
         display: none;

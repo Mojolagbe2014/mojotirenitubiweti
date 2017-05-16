@@ -21,7 +21,7 @@
                                     ?>
                                     <div class="slid_item">
                                         <div class="home_text ">
-                                            <h2 class="text-white">Welcome to <strong>Train2BeWealthy</strong></h2>
+                                            <h2 class="text-white">Welcome to <strong><?php echo WEBSITE_AUTHOR; ?></strong></h2>
                                             <h1 class="text-white"><?php echo $sliderObj->title; ?></h1>
                                             <h3 class="text-white">- <?php echo $sliderObj->content; ?> -</h3>
                                         </div>

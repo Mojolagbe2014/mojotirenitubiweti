@@ -27,7 +27,7 @@
                                         <i class="fa fa-<?php echo $icon; ?>"></i>
                                     </div>
                                     <div class="f_item_text text-justify">
-                                        <h3><?php echo $settingObj->value; ?></h3>
+                                        <h3><?php echo strip_tags($settingObj->value); ?></h3>
                                         <p><?php echo Setting::getValue($dbObj, str_replace("MENU", "CONTENT", $settingObj->name)) ? StringManipulator::trimStringToFullWord(670, Setting::getValue($dbObj, str_replace("MENU", "CONTENT", $settingObj->name))) : ''; ?></p>
                                     </div>
                                 </div>
