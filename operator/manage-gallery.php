@@ -43,7 +43,7 @@ $errorArr = array(); //Array of errors
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
-                                                <th style="max-width:150px">Preview</th>
+                                                <th style="">Preview</th>
                                                 <th>Image name</th>
                                                 <th>Actions &nbsp; 
                                                     <div style="white-space:nowrap">
