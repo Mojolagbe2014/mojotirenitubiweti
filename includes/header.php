@@ -67,9 +67,9 @@
                             <li><a href="#program-intro">The Program</a></li>
                             <li><a href="#register">Register</a></li>
                             <li><a href="#contact">Contact</a></li>
-                            <li><a href="<?php echo SITE_URL; ?>store" class="underProcessing">Store</a></li>
+                            <li><a href="#product">Store</a></li>
                             <li><a href="<?php echo FACEBOOK_LINK; ?>" title="Socialize with us on Facebook" target="_blank"><i class="fa fa-facebook-square fa-2x" style="color:blue"></i></a></li>
-                            <li><a href="#subscribeForm" title="Subscribe to our newsletter"><i class="fa fa-user fa-2x text-finence"></i></a></li>
+                            <li><a href="#subscribeForm" title="Subscribe to our newsletter"><i class="fa fa-user fa-2x text-dark-blue"></i></a></li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
                 </div> 

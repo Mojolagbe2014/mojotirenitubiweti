@@ -21,14 +21,13 @@
                                     ?>
                                     <div class="slid_item">
                                         <div class="home_text ">
-                                            <h2 class="text-white">Welcome to <strong><?php echo WEBSITE_AUTHOR; ?></strong></h2>
+                                            
                                             <h1 class="text-white"><?php echo $sliderObj->title; ?></h1>
                                             <h3 class="text-white">- <?php echo $sliderObj->content; ?> -</h3>
                                         </div>
 
                                         <div class="home_btns m-top-40 inner-link">
                                             <a href="#register" class="btn btn-primary m-top-20">Register Now</a>
-                                            <a href="#program" class="btn btn-default m-top-20">Take a Tour</a>
                                         </div>
                                     </div><!-- End off slid item -->
                                     <?php } ?>

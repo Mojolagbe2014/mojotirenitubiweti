@@ -16,7 +16,7 @@
                             <li> <a href="manage-brochures">Manage Brochures</a> </li>
                         </ul>
                     </li>-->
-                    <li> <a href="#"><i class="fa fa-user fa-2x"></i> Subscribers<span class="fa arrow"></span></a>
+                    <li> <a href="#"><i class="fa fa-users fa-2x"></i> Subscribers<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-subscribers">Manage Subscribers</a> </li>
                         </ul>
@@ -27,6 +27,12 @@
                             <li> <a href="manage-sliders">Manage Slider</a> </li>
                         </ul>
                     </li>
+                    <li> <a href="#"><i class="fa fa-folder-open fa-2x"></i> Books Manager<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li><a href="add-course">Add Book</a> </li>
+                            <li> <a href="manage-courses">Manage Books</a> </li>
+                        </ul>
+                    </li>  
                     <li> <a href="#"><i class="fa fa-question-circle fa-2x"></i> FAQs Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-faq">Manage FAQs</a> </li>

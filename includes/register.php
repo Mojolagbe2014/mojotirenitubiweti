@@ -114,7 +114,7 @@
 
                                         <div class="form-group">
                                             <div class="col-md-12">
-                                                <button type="submit" name="submit" class="btn btn-warning" >Send <span class="fa fa-send"></span></button>
+                                                <button type="submit" name="submit" class="btn btn-danger" >Send <span class="fa fa-send"></span></button>
                                             </div>
                                         </div>
                                     </fieldset>

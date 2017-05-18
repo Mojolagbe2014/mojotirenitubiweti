@@ -38,6 +38,7 @@ $(document).ready(function(){
             $.each(data, function(i, item) {
                 $('#currency').append('<option value="'+item.code+'" title="'+item.name+'">'+item.code+' ('+item.symbol+')</option>');
             });
+            $('#currency option[value="CAD"]').attr('selected', true);
         }
     });
     

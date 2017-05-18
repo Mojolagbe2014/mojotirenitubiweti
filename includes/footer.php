@@ -5,26 +5,26 @@
                         <div class="widget_area">
                             <div class="col-md-6">
                                 <div class="widget_item widget_about">
-                                    <h5 class="text-green">About Us</h5>
+                                    <h5 class="text-dark-blue">About Us</h5>
                                     <p class="m-top-20"><?php echo Setting::getValue($dbObj, 'ABOUT_US') ? strip_tags(Setting::getValue($dbObj, 'ABOUT_US'), '<br/>') : ''; ?></p>
                                     <div class="widget_ab_item m-top-30">
                                         <div class="item_icon"><i class="fa fa-location-arrow"></i></div>
                                         <div class="widget_ab_item_text">
-                                            <h6 class="text-green">Location</h6>
+                                            <h6 class="text-dark-blue">Location</h6>
                                             <p><?php echo COMPANY_ADDRESS; ?></p>
                                         </div>
                                     </div>
                                     <div class="widget_ab_item m-top-30">
                                         <div class="item_icon"><i class="fa fa-phone"></i></div>
                                         <div class="widget_ab_item_text">
-                                            <h6 class="text-green">Phone :</h6>
+                                            <h6 class="text-dark-blue">Phone :</h6>
                                             <p><?php echo COMPANY_HOTLINE; ?></p>
                                         </div>
                                     </div>
                                     <div class="widget_ab_item m-top-30">
                                         <div class="item_icon"><i class="fa fa-envelope-o"></i></div>
                                         <div class="widget_ab_item_text">
-                                            <h6 class="text-green">Email Address :</h6>
+                                            <h6 class="text-dark-blue">Email Address :</h6>
                                             <p><?php echo COMPANY_EMAIL; ?></p>
                                         </div>
                                     </div>

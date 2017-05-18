@@ -122,7 +122,9 @@ if(isset($_POST['submit'])){
 
             <?php include('includes/the-program.php'); ?>
 
-            <?php include('includes/testimonials.php'); ?>
+            <?php include('includes/store.php'); ?>
+            
+            <?php //include('includes/testimonials.php'); ?>
 
             <?php include('includes/register.php'); ?>
 
