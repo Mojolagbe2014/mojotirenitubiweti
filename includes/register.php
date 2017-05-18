@@ -88,7 +88,7 @@
                                             <div class="col-md-8 inputGroupContainer">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
-                                                    <textarea required="yes" class="form-control" name="message" placeholder="Project Description"></textarea>
+                                                    <textarea required="yes" class="form-control" name="message" placeholder="Your Message"></textarea>
                                                 </div>
                                             </div>
                                         </div>
