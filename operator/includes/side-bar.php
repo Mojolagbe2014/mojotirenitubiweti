@@ -33,6 +33,9 @@
                             <li> <a href="manage-books">Manage Books</a> </li>
                         </ul>
                     </li>  
+                    <li>
+                        <a  href="manage-transactions"><i class="fa fa-exchange fa-2x"></i> Transaction Records</a>
+                    </li>
                     <li> <a href="#"><i class="fa fa-question-circle fa-2x"></i> FAQs Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="manage-faq">Manage FAQs</a> </li>
