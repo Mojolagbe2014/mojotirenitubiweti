@@ -160,7 +160,7 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
-    <script src="assets/js/manage-courses.js"></script>
+    <script src="assets/js/manage-courses.js?<?php echo time(); ?>"></script>
     <script src="assets/js/custom.js"></script>
 </body>
 </html>

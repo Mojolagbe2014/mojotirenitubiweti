@@ -121,7 +121,7 @@ $(document).ready(function(){
         if(confirm("Are you sure you want to delete this course ["+$(this).attr('data-name')+"]? Course media ['"+$(this).attr('data-media')+"'] will be deleted too.")) deleteCourse($(this).attr('data-id'),$(this).attr('data-media'),$(this).attr('data-image'));
     });
     $(document).on('click', '.edit-course', function() {
-        if(confirm("Are you sure you want to edit this course ["+$(this).attr('data-name')+"] details?")) editCourse($(this).attr('data-id'), $(this).attr('data-name'), $(this).attr('data-short-name'), $(this).attr('data-category'), $(this).attr('data-start-date'), $(this).attr('data-end-date'), $(this).attr('data-code'), $(this).find('span#JQDTdescriptionholder').html(), $(this).attr('data-media'), $(this).attr('data-amount'), $(this).attr('data-image'), $(this).attr('data-currency'));
+        if(confirm("Are you sure you want to edit this course ["+$(this).attr('data-name')+"] details?")) editCourse($(this).attr('data-id'), $(this).attr('data-name'), $(this).attr('data-category'), $(this).find('span#JQDTdescriptionholder').html(), $(this).attr('data-media'), $(this).attr('data-amount'), $(this).attr('data-image'), $(this).attr('data-currency'));
     });
     
     function deleteCourse(id, media, image){
@@ -198,11 +198,11 @@ $(document).ready(function(){
         });
     }
     
-    function editCourse(id, name, shortName, category, startDate, endDate, code, description, media, amount, image, currency){//,
-        var formVar = {id:id, name:name, shortName:shortName, category:category, startDate:startDate, endDate:endDate, code:code, description:description, media:media, amount:amount, image:image, currency:currency };
+    function editCourse(id, name, category, description, media, amount, image, currency){//,
+        var formVar = {id:id, name:name, category:category, description:description, media:media, amount:amount, image:image, currency:currency };
         $.each(formVar, function(key, value) { 
             if(key == 'media') { $('form #oldFile').val(value); $('form #oldFileComment').text(value).css('color','red');} 
-            else if(key == 'image') { $('form #oldImage').val(value); $('form #oldImageComment').html('<img src="../media/course-image/'+value+'" style="width:50px;height:50px; margin:5px">');}
+            else if(key == 'image') { $('form #oldImage').val(value); $('form #oldImageComment').html('<img src="../media/book-image/'+value+'" style="width:50px;height:50px; margin:5px">');}
             else $('form #'+key).val(value);  
         });
         $('#hiddenUpdateForm').removeClass('hidden');

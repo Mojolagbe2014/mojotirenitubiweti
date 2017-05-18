@@ -25,14 +25,11 @@ else{
 
         $sql = "SELECT * FROM course WHERE 1=1 "; //id, name, short_name, category, start_date, code, description, media, amount, date_registered
         if(!empty($requestData['search']['value'])) {   // if there is a search parameter, $requestData['search']['value'] contains search parameter
-                $sql.=" AND ( name LIKE '%".$requestData['search']['value']."%' ";    
-                $sql.=" OR code LIKE '%".$requestData['search']['value']."%' ";
+                $sql.=" AND ( name LIKE '%".$requestData['search']['value']."%' "; 
                 $sql.=" OR description LIKE '%".$requestData['search']['value']."%' ";
                 $sql.=" OR media LIKE '%".$requestData['search']['value']."%' ";
-                $sql.=" OR start_date LIKE '%".$requestData['search']['value']."%' ";
                 $sql.=" OR date_registered LIKE '%".$requestData['search']['value']."%' ";
-                $sql.=" OR amount LIKE '%".$requestData['search']['value']."%' ";
-                $sql.=" OR short_name LIKE '%".$requestData['search']['value']."%' ) ";
+                $sql.=" OR amount LIKE '%".$requestData['search']['value']."%' ) ";
         }
         $query = $dbObj->query($sql);
         $totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. 
@@ -50,11 +47,11 @@ else{
             switch($postVar){
                 case 'media':   $courseObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 $courseMedia = $courseObj->$postVar;
-                                if($courseObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}
+                                //if($courseObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}
                                 break;
                 case 'image':   $courseObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 $courseImage = $courseObj->$postVar;
-                                if($courseObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}
+                                //if($courseObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}
                                 break;
                 default     :   $courseObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 if($courseObj->$postVar === "") {array_push ($errorArr, "Please enter $postVar ");}
@@ -119,7 +116,7 @@ else{
     }
     
     if(filter_input(INPUT_POST, "updateThisCourse") != NULL){
-        $postVars = array('id','name','description','media','amount','image', 'currency'); // Form fields names
+        $postVars = array('id','name','description', 'category','media','amount','image', 'currency'); // Form fields names
         $oldMedia = $_REQUEST['oldFile']; $oldImage = $_REQUEST['oldImage'];
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){
@@ -145,11 +142,15 @@ else{
             //$target_dir = "../project-files/";
             $target_file = MEDIA_FILES_PATH."book/". $courseMedFil;
             $target_Image = MEDIA_FILES_PATH."book-image/". $courseImageFil;
-            $uploadOk = 1; $msg = '';
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+            $uploadOk = 1; $msg = ''; $mediaFormatOk = 1;
+            $docFileType = pathinfo($target_file,PATHINFO_EXTENSION);
             
             if($newMedia !=""){
-                if (move_uploaded_file($_FILES["file"]["tmp_name"], MEDIA_FILES_PATH."book/".$courseMedFil)) {
+                if ($docFileType!='doc' && $docFileType!='docx' && $docFileType!='pdf' && $docFileType!='xls' && $docFileType!='csv') { 
+                    $msg .= "Book must be in either of these formats: PDF, DOC, DOCX, XLS, CSV."; $uploadOk = 0; 
+                    $mediaFormatOk = 0;
+                }
+                if ($mediaFormatOk == 1 && move_uploaded_file($_FILES["file"]["tmp_name"], MEDIA_FILES_PATH."book/".$courseMedFil)) {
                     $msg .= "The file ". basename( $_FILES["file"]["name"]). " has been uploaded.";
                     $status = 'ok'; if($oldMedia!='' && file_exists(MEDIA_FILES_PATH."book/".$oldMedia)) unlink(MEDIA_FILES_PATH."book/".$oldMedia);
                 } else {
@@ -157,7 +158,7 @@ else{
                 }
             }
             if($newImage !=""){
-                if(Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'min', 'both') != 'true'){$uploadOk = 0; $msg = Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'min', 'both');}
+                if(Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'equ', 'both') != 'true'){$uploadOk = 0; $msg = Imaging::checkDimension($_FILES["image"]["tmp_name"], 400, 400, 'equ', 'both');}
                 if ($uploadOk == 1 && move_uploaded_file($_FILES["image"]["tmp_name"], MEDIA_FILES_PATH."book-image/".$courseImageFil)) {
                     $msg .= "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
                     $status = 'ok'; if($oldImage!='' && file_exists(MEDIA_FILES_PATH."book-image/".$oldImage))unlink(MEDIA_FILES_PATH."book-image/".$oldImage);
