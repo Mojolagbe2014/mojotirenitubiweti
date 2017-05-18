@@ -29,8 +29,8 @@
                     </li>
                     <li> <a href="#"><i class="fa fa-folder-open fa-2x"></i> Books Manager<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
-                            <li><a href="add-course">Add Book</a> </li>
-                            <li> <a href="manage-courses">Manage Books</a> </li>
+                            <li><a href="add-book">Add Book</a> </li>
+                            <li> <a href="manage-books">Manage Books</a> </li>
                         </ul>
                     </li>  
                     <li> <a href="#"><i class="fa fa-question-circle fa-2x"></i> FAQs Manager<span class="fa arrow"></span></a>

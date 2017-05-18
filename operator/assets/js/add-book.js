@@ -1,9 +1,9 @@
 $(document).ready(function(){
-    $( "#startDate" ).datepicker({ 
-        dateFormat: "yy-mm-dd",appendText: "(yyyy-mm-dd)", changeMonth: true, changeYear: true,
-        onClose: function(){ $('#endDate').datepicker( "option", "minDate", new Date($(this).datepicker( "getDate" )) ); }
-    });
-    $( "#endDate" ).datepicker({ dateFormat: "yy-mm-dd",appendText: "(yyyy-mm-dd)", changeMonth: true, changeYear: true });
+//    $( "#startDate" ).datepicker({ 
+//        dateFormat: "yy-mm-dd",appendText: "(yyyy-mm-dd)", changeMonth: true, changeYear: true,
+//        onClose: function(){ $('#endDate').datepicker( "option", "minDate", new Date($(this).datepicker( "getDate" )) ); }
+//    });
+//    $( "#endDate" ).datepicker({ dateFormat: "yy-mm-dd",appendText: "(yyyy-mm-dd)", changeMonth: true, changeYear: true });
    
     //Fetch all the categories
     $.ajax({
@@ -38,10 +38,11 @@ $(document).ready(function(){
             $.each(data, function(i, item) {
                 $('#currency').append('<option value="'+item.code+'" title="'+item.name+'">'+item.code+' ('+item.symbol+')</option>');
             });
+            $('#currency option[value="CAD"]').attr('selected', true);
         }
     });
     
-    $("form#CreateCourse").submit(function(e){ 
+    $("form#CreateBook").submit(function(e){ 
         e.stopPropagation();
         e.preventDefault();
         $(document).scrollTo('div.panel h3');

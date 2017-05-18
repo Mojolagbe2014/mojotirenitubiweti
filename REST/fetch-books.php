@@ -5,10 +5,10 @@ include ('../classes/WebPage.php'); //Set up page as a web page
 $thisPage = new WebPage(); //Create new instance of webPage class
 
 $dbObj = new Database();//Instantiate database
-$courseObj = new Course($dbObj); // Create an object of Course class
+$bookObj = new Book($dbObj); // Create an object of Book class
 $errorArr = array(); //Array of errors
 
 
-//fetch all courses
+//fetch all books
 header('Content-type: application/json');
-echo $courseObj->fetch();
+echo $bookObj->fetch();
