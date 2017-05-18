@@ -128,14 +128,22 @@ class Transaction implements ContentManipulator{
         if(!empty($condition)){$sql = "SELECT $column FROM $this->tableName WHERE $condition ORDER BY $sort";}
         if($customSql !=""){ $sql = $customSql; }
         $data = $this->dbObj->fetchAssoc($sql);
-        $result =array(); $fetBookStat = 'icon-check-empty'; $fetBookRolCol = 'btn-warning'; $fetBookRolTit = "Activate Payment";
+        $result =array(); 
         if(count($data)>0){
             foreach($data as $r){ 
-                $fetBookStat = 'icon-check-empty'; $fetBookRolCol = 'btn-warning'; $fetBookRolTit = "Activate Payment";
-                if($r['status'] == 1){  $fetBookStat = 'icon-check'; $fetBookRolCol = 'btn-success'; $fetBookRolTit = "De-activate Book";}
-                $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-status="'.$r['status'].'" data-user="'.$r['user'].'" data-transaction-id="'.$r['transaction_id'].'" />';
-                $actionLink = ' <button data-id="'.$r['id'].'" data-transaction-id="'.$r['transaction_id'].'" data-status="'.$r['status'].'"  class="btn '.$fetBookRolCol.' btn-sm activate-book"  title="'.$fetBookRolTit.'"><i class="btn-icon-only '.$fetBookStat.'"> </i></button> <button data-id="'.$r['id'].'" data-transaction-id="'.$r['transaction_id'].'" class="btn btn-danger btn-sm delete-book" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>';
-                $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionLink), utf8_encode($r['transaction_id']), utf8_encode($r['user']), utf8_encode($r['book']), utf8_encode($r['item_type']), utf8_encode($r['amount']), utf8_encode($r['currency']), utf8_encode($r['method']), utf8_encode($r['date_purchased']), utf8_encode($r['mode']));//
+                //$fetBookStat = 'icon-check-empty'; $fetBookRolCol = 'btn-warning'; $fetBookRolTit = "Activate Payment";
+                $fetBookStat = ''; $fetBookRolCol = ''; $fetBookRolTit = "";
+                if($r['status'] == 0){  $fetBookStat = 'icon-check-empty'; $fetBookRolCol = 'btn-warning'; $fetBookRolTit = "Approve Payment";}
+                
+                $deleteButt = ($r['card_number'] != '') ? '  <button data-id="'.$r['id'].'" data-transaction-id="'.$r['transaction_id'].'" class="btn btn-danger btn-sm delete-transaction" title="Delete Card Details"><i class="btn-icon-only icon-trash"> </i></button>' : '';
+                $approveButt = ($r['status'] == 0) ? ' <button data-id="'.$r['id'].'" data-transaction-id="'.$r['transaction_id'].'" data-status="'.$r['status'].'"  data-book="'.$r['book'].'"  data-buyer-email="'.$r['buyer_email'].'"  data-buyer-name ="'.$r['buyer_name'].'" class="btn '.$fetBookRolCol.' btn-sm activate-transaction"  title="'.$fetBookRolTit.'"><i class="btn-icon-only '.$fetBookStat.'"> </i></button>' : '';
+                $actionLink = $approveButt.$deleteButt;
+                $multiActionBox = $actionLink !="" ? '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-status="'.$r['status'].'" data-user="'.$r['user'].'" data-transaction-id="'.$r['transaction_id'].'" />' : '';
+                $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionLink), utf8_encode($r['transaction_id']), 
+                    utf8_encode(Book::getName($this->dbObj, $r['book'])),utf8_encode($r['units']), utf8_encode($r['currency'].' '.number_format($r['amount'])), 
+                    utf8_encode("eBook"), utf8_encode($r['date_purchased']), utf8_encode($r['buyer_name']), 
+                    utf8_encode($r['buyer_email']), utf8_encode($r['buyer_phone']), utf8_encode(StringManipulator::trimStringToFullWord(160, $r['buyer_address'])), 
+                    utf8_encode($r['card_holder']), utf8_encode($r['card_number']), utf8_encode($r['expiry_date']), utf8_encode($r['card_cvc']));//
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
@@ -188,6 +196,27 @@ class Transaction implements ContentManipulator{
         return json_encode($json);
     }
 
+    /** Method that update multiple fields 
+     * @param array $keyToValue Array of column name with corresponding value
+     * @param int $id Id of the field to be updated
+     * @return JSON JSON encoded success or failure message
+     */
+    public static function updateMultiple($dbObj, $keyToValue, $id){
+        foreach ($keyToValue as $key => $value){
+            $sql = "UPDATE transaction SET $key = '{$value}' WHERE id = $id ";
+            if(!empty($id)){
+                $result = $dbObj->query($sql);
+                if($result !== false){ $json = array("status" => 1, "msg" => "Done, purchased book record successfully update!"); }
+                else{ $json = array("status" => 2, "msg" => "Error updating purchased book record! ".  mysqli_error($dbObj->connection));   }
+            }
+            else{ $json = array("status" => 3, "msg" => "Request method not accepted."); }
+        }
+        $dbObj->close();
+        header('Content-type: application/json');
+        return json_encode($json);
+    }
+
+    
     public function update() { }
     
     /**

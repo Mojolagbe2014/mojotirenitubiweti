@@ -21,6 +21,9 @@ $errorArr = array(); //Array of errors
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
+    <style>
+        td, th {white-space: nowrap}
+    </style>
 </head>
 <body>
      <div id="wrapper">
@@ -44,19 +47,24 @@ $errorArr = array(); //Array of errors
                                         <thead>
                                             <tr>
                                                 <th><input type="checkbox" class="select-checkbox" id="multi-action-box" /></th>
-                                                <th>Action <br/> 
-                                                    <button  class="btn btn-success btn-sm multi-activate-book multi-select" title="Change selected item(s) status"><i class="btn-icon-only icon-check"> </i></button> 
-                                                    <button class="btn btn-danger btn-sm multi-delete-book multi-select" title="Delete Selected"><i class="btn-icon-only icon-trash"> </i></button>
+                                                <th>Action &nbsp;
+                                                    <button  class="btn btn-success btn-sm multi-activate-transaction multi-select" title="Approve Selected Payments"><i class="btn-icon-only icon-check"> </i></button> 
+                                                    <button class="btn btn-danger btn-sm multi-delete-transaction multi-select" title="Delete Selected Card Details"><i class="btn-icon-only icon-trash"> </i></button>
                                                 </th>
                                                 <th>Transaction ID</th>
-                                                <th>Buyer Name</th>
-                                                <th>Course Purchased</th>
-                                                <th>Item Type</th>
-                                                <th>Amount</th>
-                                                <th>Currency</th>
-                                                <th>Method</th>
+                                                <th>Book Title</th>
+                                                <th>Units</th>
+                                                <th>Amount Paid</th>
+                                                <th>Category</th>
                                                 <th>Date Purchased</th>
-                                                <th>Payment Mode</th>
+                                                <th>Buyer Name</th>
+                                                <th>Buyer Email</th>
+                                                <th>Buyer Phone</th>
+                                                <th>Buyer Address</th>
+                                                <th>Card Holder</th>
+                                                <th>Card Number</th>
+                                                <th>Expiry Date</th>
+                                                <th>Card CVC</th>
                                             </tr>
                                         </thead>
                                         <tbody></tbody>
@@ -148,7 +156,6 @@ $errorArr = array(); //Array of errors
                             </form>
                             </div>
                         </div>
-                        <div class="messageBox"></div>
                         <!--/.content-->
                     </div>
                     <!--/.span9-->
