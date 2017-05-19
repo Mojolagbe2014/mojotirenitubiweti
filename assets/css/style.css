@@ -1377,8 +1377,6 @@ nav.navbar.bootsnav ul.nav > li > a { font-size: 18px; font-weight: bold;}
     border-color: #2c8cb3;
 }
 
-
-
 @media only screen and (max-width: 768px){
     .navbar-brand > img {
         display: none;

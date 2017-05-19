@@ -14,7 +14,7 @@ class ThumbNail extends Imaging{
         parent::setImage($image); 
         parent::setQuality(80); 
         parent::setSize($width,$height); 
-        $this->thumbnail= pathinfo($image, PATHINFO_DIRNAME).pathinfo($image, PATHINFO_FILENAME).'_tn.'.pathinfo($image, PATHINFO_EXTENSION); 
+        $this->thumbnail= pathinfo($image, PATHINFO_DIRNAME)."/".pathinfo($image, PATHINFO_FILENAME).'_tn.'.pathinfo($image, PATHINFO_EXTENSION); 
         parent::saveImg($this->thumbnail); 
         parent::clearCache(); 
     } 
