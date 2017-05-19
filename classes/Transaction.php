@@ -235,4 +235,17 @@ class Transaction implements ContentManipulator{
         header('Content-type: application/json');
         return json_encode($json);
     }
+    
+    /** getSingle fetches value a field
+     * @param object $dbObj Database connectivity and manipulation object
+     * @param string $column Required column 
+     * @param int $id ID of the row
+     * @return string Value of the requested field
+     */
+    public static function getSingle($dbObj, $column, $id) {
+        $thisAsstReqVal = '';
+        $thisAsstReqVals = $dbObj->fetchNum("SELECT $column FROM transaction WHERE id = '{$id}' LIMIT 1 ");
+        foreach ($thisAsstReqVals as $thisAsstReqVals) { $thisAsstReqVal = $thisAsstReqVals[0]; }
+        return $thisAsstReqVal;
+    }
 }
