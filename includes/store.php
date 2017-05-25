@@ -37,6 +37,7 @@
                                             foreach($bookObj->fetchRaw("*", " status=1 ", " id DESC LIMIT $itemsPerPage OFFSET $offset ")as $book) {
                                                 $bookObj->image = MEDIA_FILES_PATH1.'book-image/'.$book['image'];
                                                 $thumb = new ThumbNail("media/book-image/".$book['image'], 290, 250);
+                                                $book['currency'] = $book['currency'] == "CAD" ? "CA$" : $book['currency'];
                                             ?>
                                             <div class="col-sm-3">
                                                 <div class="port_item xs-m-top-30">
@@ -55,7 +56,10 @@
                                                             <i class="fa fa-quote-right"></i>
                                                         </p>
                                                         <div class="m-top-10">
-                                                            <a href="#buynow" class="btn btn-primary m-top-10">Buy Now!</a>
+                                                            <button  class="book-now btn btn-primary m-top-10" 
+                                                                     data-id="<?php echo $book['id']; ?>" data-name="<?php echo $book['name']; ?>"
+                                                                     data-amount="<?php echo $book['amount']; ?>" data-currency="<?php echo $book['currency']; ?>"
+                                                                     >Buy Now!</button>
                                                         </div>
                                                     </div>
                                                 </div>

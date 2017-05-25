@@ -54,7 +54,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group"> 
-                                            <label class="col-md-3 control-label">State</label>
+                                            <label class="col-md-3 control-label">Province</label>
                                             <div class="col-md-8 selectContainer">
                                                 <div class="input-group">
                                                     <span class="input-group-addon"><i class="fa fa-list"></i></span>

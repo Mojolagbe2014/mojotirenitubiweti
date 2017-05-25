@@ -9,11 +9,11 @@ class Transaction implements ContentManipulator{
     private $id;
     private $transactionId;
     private $book;
-    private $units;
+    private $units = 1;
     private $amount;
-    private $currency;
-    private $category;
-    private $datePurchased = 'CURRENT_DATE';
+    private $currency = 'CAD';
+    private $category = 1;
+    private $datePurchased = ' CURRENT_DATE ';
     
     //card details
     private $cardHolder;
@@ -55,7 +55,7 @@ class Transaction implements ContentManipulator{
      */
     function add(){
         $sql = "INSERT INTO $this->tableName (`transaction_id`, `book`, `units`, `amount`, `currency`, `category`, `date_purchased`, `card_holder`, `card_number`, `expiry_date`, `card_cvc`, `buyer_name`, `buyer_email`, `buyer_phone`, `buyer_address`, `status`) "
-                ."VALUES ('{$this->transactionId}','{$this->book}','{$this->units}','{$this->amount}','{$this->currency}','{$this->category}','{$this->datePurchased}','{$this->cardHolder}','{$this->cardNumber}','{$this->expiryDate}','{$this->cardCVC}','{$this->buyerName}','{$this->buyerEmail}','{$this->buyerPhone}','{$this->buyerAddress}','{$this->status}')";
+                ."VALUES ('{$this->transactionId}','{$this->book}','{$this->units}','{$this->amount}','{$this->currency}','{$this->category}',$this->datePurchased,'{$this->cardHolder}','{$this->cardNumber}','{$this->expiryDate}','{$this->cardCVC}','{$this->buyerName}','{$this->buyerEmail}','{$this->buyerPhone}','{$this->buyerAddress}','{$this->status}')";
         if($this->notEmpty($this->transactionId, $this->cardNumber)){
             $result = $this->dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, user's purchase record successfully added!"); }
@@ -66,6 +66,22 @@ class Transaction implements ContentManipulator{
         $this->dbObj->close();//Close Database Connection
         header('Content-type: application/json');
         return json_encode($json);
+    }
+    
+    /**  
+     * Method that adds a user's purchase books into the database
+     * @return string success | error
+     */
+    function addRaw(){
+        $sql = "INSERT INTO $this->tableName (`transaction_id`, `book`, `units`, `amount`, `currency`, `category`, `date_purchased`, `card_holder`, `card_number`, `expiry_date`, `card_cvc`, `buyer_name`, `buyer_email`, `buyer_phone`, `buyer_address`, `status`) "
+                ."VALUES ('{$this->transactionId}','{$this->book}','{$this->units}','{$this->amount}','{$this->currency}','{$this->category}',$this->datePurchased,'{$this->cardHolder}','{$this->cardNumber}','{$this->expiryDate}','{$this->cardCVC}','{$this->buyerName}','{$this->buyerEmail}','{$this->buyerPhone}','{$this->buyerAddress}','{$this->status}')";
+        if($this->notEmpty($this->transactionId, $this->cardNumber)){
+            $result = $this->dbObj->query($sql);
+            if($result !== false){ $json = array("status" => 1, "value" => "success", "msg" => "Done, user's purchase record successfully added!"); }
+            else{ $json = array("status" => 2, "value" => "error", "msg" => "Error adding user's purchase record! ".  mysqli_error($this->dbObj->connection)); }
+        }
+        else{ $json = array("status" => 3, "value" => "error", "msg" => "Request method not accepted. All fields must be filled."); }
+        return $json;
     }
 
     /** 

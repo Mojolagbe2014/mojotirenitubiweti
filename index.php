@@ -15,69 +15,23 @@ $brochureObj = new CourseBrochure($dbObj);
 $videoObj = new Video($dbObj);
 $settingObj = new Setting($dbObj);
 $bookObj = new Book($dbObj);
+$transactionObj = new Transaction($dbObj);
 $userObj = new User($dbObj); // Create an object of Admin class
 $errorArr = array(); //Array of errors
 $msg = ''; $msgStatus = '';
 
 include('includes/other-settings.php');
 require('includes/page-properties.php');
-if(isset($_POST['submit'])){
-    $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) :  ''; 
-    if($email == "") {array_push ($errorArr, "valid email ");}
-    $name = filter_input(INPUT_POST, 'fname') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'fname')) :  ''; 
-    if($name == "") {array_push ($errorArr, " name ");}
-    $address = filter_input(INPUT_POST, 'address') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'address')) :  ''; 
-    if($address == "") {array_push ($errorArr, " address ");}
-    $state = filter_input(INPUT_POST, 'state') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'state')) :  ''; 
-    if($state == "") {array_push ($errorArr, " state/province ");}
-    $postCode = filter_input(INPUT_POST, 'post') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'post')) :  ''; 
-    if($postCode == "") {array_push ($errorArr, " postal code ");}
-    $country = filter_input(INPUT_POST, 'country') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'country')) :  ''; 
-    if($country == "") {array_push ($errorArr, " country ");}
-    $telephone = filter_input(INPUT_POST, 'telephone') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'telephone')) :  ''; 
-    if($telephone == "") {array_push ($errorArr, " telephone ");}
-    $body = filter_input(INPUT_POST, 'message') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'message')) :  ''; 
-    if($body == "") {array_push ($errorArr, " message ");}
-    $subject = filter_input(INPUT_POST, 'subject') ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'subject')) :  ''; 
+include('includes/submit-registration-form.php');
+include('includes/submit-payment.php');
 
-    $captcha = trim(strtolower($_REQUEST['captcha'])) != $_SESSION['captcha'] ? "" : 1;
-    if($captcha == "") {array_push ($errorArr, " captcha ");}
-    
-    
-    if(count($errorArr) < 1)   {
-        $emailAddress = COMPANY_EMAIL;//iadet910@iadet.net
-        if(empty($subject)) $subject = "Message From: $name";	
-        $transport = Swift_MailTransport::newInstance();
-        $message = Swift_Message::newInstance();
-        
-            $content = "<table>";
-            $content .= "<tr>";
-            $content .= "<th>Full Name</th><th>Address</th> <th>State</th><th>Post Code</th><th>Country</th><th>Telephone</th><th>Email</th><th>Message</th>";
-            $content .= "</tr>";
-            $content .= "<tr>";
-            $content .= "<td>" . $name . "</td><td>" . $address . "</td> <td>" . $state . "</td><td>" . $postCode . "</td><td>" . $country . "</td><td>" . $telephone . "</td><td>" . $email. "</td><td>" . $body . "</td>";
-            $content .= "</tr>";
-            $content .= "</table>";
-            $content .= "</body>";
-            $content .= "</html>";
-        
-        $message->setTo(array($emailAddress => WEBSITE_AUTHOR));
-        $message->setSubject($subject);
-        $message->setBody($content);
-        $message->setFrom($email, $name);
-        $message->setContentType("text/html");
-        $mailer = Swift_Mailer::newInstance($transport);
-        $mailer->send($message);
-        $msgStatus = 'success';
-        $msg = $thisPage->messageBox('Your message has been sent.', 'success');
-    }else{ $msgStatus = 'error'; $msg = $thisPage->showError($errorArr); }
-}
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js" lang="en"> <!--<![endif]-->
     <head>
         <?php include('includes/meta-tags.php'); ?>
 
@@ -105,6 +59,9 @@ if(isset($_POST['submit'])){
         <script src="assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
         <link href="<?php echo SITE_URL; ?>sweet-alert/sweetalert.css" rel="stylesheet" type="text/css"/>
         <link href="<?php echo SITE_URL; ?>sweet-alert/twitter.css" rel="stylesheet" type="text/css"/>
+        <link href="Simple-Fast-Popup/dist/jquery.simple-popup.min.css" rel="stylesheet" type="text/css"/>
+        
+        <script src="skeuocard/javascripts/vendor/cssua.min.js"></script>
     </head>
 
     <body data-spy="scroll" data-target=".navbar-collapse">
@@ -127,7 +84,7 @@ if(isset($_POST['submit'])){
             <?php //include('includes/testimonials.php'); ?>
 
             <?php include('includes/register.php'); ?>
-
+            
             <!--Call to  action section-->
             <section id="action" class="action bg-primary roomy-40">
                 <div class="container">
@@ -150,6 +107,8 @@ if(isset($_POST['submit'])){
 
             <?php include('includes/footer.php'); ?>
         </div>
+        
+        <?php include('includes/pay-now-popup.php'); ?>
 
         <!-- JS includes -->
         <script src="assets/js/vendor/jquery-1.11.2.min.js"></script>
@@ -164,17 +123,22 @@ if(isset($_POST['submit'])){
         <script src="assets/js/bootsnav.js"></script>
 
         <script src="assets/js/plugins.js"></script>
-        <script src="assets/js/main.js"></script>
+        <script src="Simple-Fast-Popup/dist/jquery.simple-popup.min.js" type="text/javascript"></script>
+        <script src="assets/js/main.js?<?php echo time(); ?>"></script>
         <script src="<?php echo SITE_URL; ?>sweet-alert/sweetalert.min.js" type="text/javascript"></script>
-        <?php if(isset($_SESSION['msg'])) {  ?>
+        <?php if(isset($_SESSION['msg'])) {  
+            $msgSt = $_SESSION['msgStatus'];
+            $msg_ = $_SESSION['msg'];;
+            $swalTitle = ($msgSt == 'success') ?  'Message Sent!': 'Message Not Sent!';
+        ?>
         <script>
             swal({
-                title: "Message Box!",
-                text: '<?php echo $_SESSION['msg']; ?>',
+                title: '<?php echo $swalTitle; ?>',
+                text: '<?php echo $msg_; ?>',
                 confirmButtonText: "Okay",
                 customClass: 'twitter',
                 html: true,
-                type: '<?php echo $_SESSION['msgStatus']; ?>'
+                type: '<?php echo $msgSt; ?>'
             });
         </script>
         <?php  unset($_SESSION['msg']); unset($_SESSION['msgStatus']);  } ?>
@@ -190,5 +154,6 @@ if(isset($_POST['submit'])){
             });
         </script>
         <?php  $msg =''; $msgStatus ='';  } ?>
+        
     </body>
 </html>

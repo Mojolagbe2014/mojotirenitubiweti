@@ -123,5 +123,15 @@ jQuery(document).ready(function(){
             jQuery(this).css('cursor','not-allowed').addClass('alert-danger');;
         }
     });
+    
+    $("button.book-now").simplePopup({ type: "html", htmlSelector: "#paypage" });
+    $("button.book-now").hover(function(){
+        var thisPage = $('#paypage');
+        thisPage.find('h4').text('BOOK TITLE: '+$(this).attr('data-name'));
+        $('form#payform input#book').val($(this).attr('data-id'));
+        $('form#payform input#amounts').val(parseInt($(this).attr('data-amount')));
+        $('form#payform input#amount').val(parseInt($(this).attr('data-amount')));
+        
+    });
 });
 
