@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 if(isset($_POST['submitPayment'])){
     $postVars = array('book','units','amount','currency','cardHolder','cardNumber', 'expiryDate', 'cardCVC', 'buyerName', 'buyerEmail', 'buyerPhone', 'buyerAddress'); // Form fields names
     //Validate the POST variables and add up to error message if empty
@@ -27,21 +27,22 @@ if(isset($_POST['submitPayment'])){
             $transport = Swift_MailTransport::newInstance();
             $message = Swift_Message::newInstance();
 
-            $content = "<strong>From:</strong>".WEBSITE_AUTHOR." <br/><br/> <strong>Message:</strong> Your payment details for [".Book::getName($dbObj, $transactionObj->book). ' eBook] has been received. <em>We will send you another email containing the book as an attachment once the payment is verified.</em>'.
-                            '. 
-                            <style type="text/css">
-                            .transaction_info {margin:0px auto; background:#F2FCFF;; max-width: 750px; color:#555;font-size: 13px;font-family: Arial, sans-serif;}
-                            .transaction_info thead {background: #BCE4FA;font-weight: bold;}
-                            .transaction_info thead tr th {border-bottom: 1px solid #ddd;}
-                            </style>
+            $content = "Dear ".$transactionObj->buyerName.", <br/> <p>Your payment details for <strong><i>[".Book::getName($dbObj, $transactionObj->book). ' eBook]</i></strong> has been received. <em>We will send you another email containing the book as an attachment once the payment is verified.</em></p>'.
+                            '
                             <div align="center"><h2>Payment Details</h2></div>
-                            <table border="0" cellpadding="10" cellspacing="0" class="transaction_info">
-                            <thead><tr>
-                            <td>Transaction ID</td>
-                            <td>Currency</td>
-                            <td>Amount</td><td>Book</td>
-                            <td>Units</td><td>Buyer Name</td>
-                            <td>Buyer Email</td><td>Buyer Phone</td></tr></thead>
+                            <table border="0" cellpadding="10" cellspacing="0" style="margin:0px auto; background:#F2FCFF;; max-width: 750px; color:#555;font-size: 13px;font-family: Arial, sans-serif;">
+                            <thead style="background: #BCE4FA;font-weight: bold;">
+                            <tr>
+                            <th style="border-bottom: 1px solid #ddd;">Transaction ID</th>
+                            <th style="border-bottom: 1px solid #ddd;">Currency</th>
+                            <th style="border-bottom: 1px solid #ddd;">Amount</th>
+                            <th style="border-bottom: 1px solid #ddd;">Book</th>
+                            <th style="border-bottom: 1px solid #ddd;">Units</th>
+                            <th style="border-bottom: 1px solid #ddd;">Buyer Name</th>
+                            <th style="border-bottom: 1px solid #ddd;">Buyer Email</th>
+                            <th style="border-bottom: 1px solid #ddd;">Buyer Phone</th>
+                            </tr>
+                            </thead>
                             <tbody>
                             <tr>
                             <td>'.$transactionObj->transactionId.'</td>

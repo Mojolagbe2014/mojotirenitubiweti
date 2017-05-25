@@ -108,21 +108,23 @@ else{
             $transport = Swift_MailTransport::newInstance();
             $message = Swift_Message::newInstance();
             $subject = "Book Purchase Transaction Response - ".WEBSITE_AUTHOR;
-            $content = "<strong>From:</strong>".WEBSITE_AUTHOR." <br/><br/> <strong>Message:</strong> You have successfully purchased [".Book::getName($dbObj, $transactionObj->book). ' eBook]'.
-                        '. 
-                        <style type="text/css">
-                        .transaction_info {margin:0px auto; background:#F2FCFF;; max-width: 750px; color:#555;font-size: 13px;font-family: Arial, sans-serif;}
-                        .transaction_info thead {background: #BCE4FA;font-weight: bold;}
-                        .transaction_info thead tr th {border-bottom: 1px solid #ddd;}
-                        </style>
+            $content = "Dear ".$transactionObj->buyerName.", <br/> <p>You have successfully purchased [".Book::getName($dbObj, $transactionObj->book). ' eBook]. <br/>Kindly download the attached ebook. <br/>Thanks<p>'.
+                        '
                         <div align="center"><h2>Payment Success</h2></div>
-                        <table border="0" cellpadding="10" cellspacing="0" class="transaction_info">
-                        <thead><tr>
-                        <td>Transaction ID</td>
-                        <td>Date</td><td>Currency</td>
-                        <td>Amount</td><td>Book</td>
-                        <td>Units</td><td>Buyer Name</td>
-                        <td>Buyer Email</td><td>Buyer Phone</td></tr></thead>
+                        <table border="0" cellpadding="10" cellspacing="0" style="margin:0px auto; background:#F2FCFF;; max-width: 750px; color:#555;font-size: 13px;font-family: Arial, sans-serif;">
+                        <thead style="background: #BCE4FA;font-weight: bold;">
+                        <tr>
+                        <th style="border-bottom: 1px solid #ddd;">Transaction ID</th>
+                        <th style="border-bottom: 1px solid #ddd;">Date</th>
+                        <th style="border-bottom: 1px solid #ddd;">Currency</th>
+                        <th style="border-bottom: 1px solid #ddd;">Amount</th>
+                        <th style="border-bottom: 1px solid #ddd;">Book</th>
+                        <th style="border-bottom: 1px solid #ddd;">Units</th>
+                        <th style="border-bottom: 1px solid #ddd;">Buyer Name</th>
+                        <th style="border-bottom: 1px solid #ddd;">Buyer Email</th>
+                        <th style="border-bottom: 1px solid #ddd;">Buyer Phone</th>
+                        </tr>
+                        </thead>
                         <tbody>
                         <tr>
                         <td>'.$transactionObj->transactionId.'</td>

@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 if(isset($_POST['submit'])){
     $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL)) :  ''; 
     if($email == "") {array_push ($errorArr, "valid email ");}
