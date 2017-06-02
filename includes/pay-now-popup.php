@@ -102,7 +102,8 @@
                     
                     <div class="form-group">
                         <div class="col-md-8 text-center">
-                            <button type="submit" name="submitPayment" class="btn btn-danger btn-sm" style="padding:8px 8px;">Pay Now <span class="fa fa-send"></span></button>
+                            <button type="submit" name="submitPayment" class="btn btn-warning btn-sm" style="padding:8px 8px;" title="Pay Now! No Refunds">Pay Now <span class="fa fa-send"></span></button>
+                            <strong class="text-danger"  style="padding:8px 8px;"><u> NO REFUNDS</u></strong>
                         </div>
                     </div>
                 </form>

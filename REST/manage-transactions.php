@@ -20,7 +20,7 @@ else{
     if(filter_input(INPUT_POST, "fetchTransactions") != NULL){
         $requestData= $_REQUEST;
 
-        $columns = array(0 => id, 1 => id, 2 => 'transaction_id', 3 =>  'book', 4 =>  'units', 5 =>'amount', 
+        $columns = array(0 => 'id', 1 => 'id', 2 => 'transaction_id', 3 =>  'book', 4 =>  'units', 5 =>'amount', 
             6 => 'category', 7 =>  'date_purchased', 8 =>  'buyer_name', 9 => 'buyer_email', 10 => 'buyer_phone',
             11 => 'buyer_address', 12 => 'card_holder', 13 => 'card_number', 14 => 'expiry_date', 15 => 'card_cvc');
 
@@ -150,7 +150,7 @@ else{
                 Swift_Attachment::fromPath($targetBook)->setFilename($bookNewName)
             );
             $mailer->send($message);
-            echo Transaction::updateSingle($dbObj, ' status ',  $transactionObj->status, $transactionObj->id); 
+            //echo Transaction::updateSingle($dbObj, ' status ',  $transactionObj->status, $transactionObj->id); 
 //            $json = array("status" => 0, "msg" => $content); 
 //            $dbObj->close();//Close Database Connection
 //            header('Content-type: application/json');

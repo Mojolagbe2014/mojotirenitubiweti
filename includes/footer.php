@@ -84,7 +84,7 @@
                         <p class="wow fadeInRigh text-white" data-wow-duration="1s">
                             Developed  by:  
                             <a href="http://timca.6te.net" target="_blank" rel="nofollow">TIMCA Computers Inc</a> 
-                            &copy; <?php $currYear   = new DateTime(); echo $currYear->format('Y'); ?>. All Rights Reserved
+                            &copy; <?php echo date("Y"); ?>. All Rights Reserved
                         </p>
                     </div>
                 </div>

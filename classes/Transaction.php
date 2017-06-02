@@ -154,7 +154,7 @@ class Transaction implements ContentManipulator{
                 $deleteButt = ($r['card_number'] != '') ? '  <button data-id="'.$r['id'].'" data-transaction-id="'.$r['transaction_id'].'" class="btn btn-danger btn-sm delete-transaction" title="Delete Card Details"><i class="btn-icon-only icon-trash"> </i></button>' : '';
                 $approveButt = ($r['status'] == 0) ? ' <button data-id="'.$r['id'].'" data-transaction-id="'.$r['transaction_id'].'" data-status="'.$r['status'].'"  data-book="'.$r['book'].'"  data-buyer-email="'.$r['buyer_email'].'"  data-buyer-name ="'.$r['buyer_name'].'" class="btn '.$fetBookRolCol.' btn-sm activate-transaction"  title="'.$fetBookRolTit.'"><i class="btn-icon-only '.$fetBookStat.'"> </i></button>' : '';
                 $actionLink = $approveButt.$deleteButt;
-                $multiActionBox = $actionLink !="" ? '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-status="'.$r['status'].'" data-user="'.$r['user'].'" data-transaction-id="'.$r['transaction_id'].'" />' : '';
+                $multiActionBox = $actionLink !="" ? '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-status="'.$r['status'].'" data-transaction-id="'.$r['transaction_id'].'" />' : '';
                 $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionLink), utf8_encode($r['transaction_id']), 
                     utf8_encode(Book::getName($this->dbObj, $r['book'])),utf8_encode($r['units']), utf8_encode($r['currency'].' '.number_format($r['amount'])), 
                     utf8_encode("eBook"), utf8_encode($r['date_purchased']), utf8_encode($r['buyer_name']), 

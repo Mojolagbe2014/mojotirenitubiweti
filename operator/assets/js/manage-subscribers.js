@@ -143,10 +143,10 @@ $(document).ready(function(){
             cache: false,
             success : function(data, status) {
                 if(data.status === 1){
-                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+' </div>');
+                    $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>'+(data.msg ? data.msg : data)+' </div>');
                 }
                 else {
-                    $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+data.msg+'</div>');
+                    $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>'+(data.msg ? data.msg : data)+'</div>');
                 }
                 //dataTable.ajax.reload();
                 $.gritter.add({
