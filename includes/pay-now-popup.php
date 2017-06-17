@@ -18,6 +18,7 @@
                                 <input type="hidden" id="book" name="book" value="" required="required"/>
                                 <input name="units" id="units" type="hidden" value="1">
                                 <input name="currency" id="currency" type="hidden" value="CAD">
+                                <input name="category" id="category" type="hidden" value="">
                                 <input type="hidden" id="amount" name="amount" value="" required="required"/>
                                 <input name="amounts" id="amounts" placeholder="amount" class="form-control"  type="number" disabled="disabled">
                             </div>

@@ -106,7 +106,6 @@ function showMessage(title, message, alertType){
     });
 }
 
-
 jQuery(document).ready(function(){
     jQuery(".underProcessing").click(function(e) {
         e.preventDefault();
@@ -131,7 +130,18 @@ jQuery(document).ready(function(){
         $('form#payform input#book').val($(this).attr('data-id'));
         $('form#payform input#amounts').val(parseInt($(this).attr('data-amount')));
         $('form#payform input#amount').val(parseInt($(this).attr('data-amount')));
+        $('form#payform input#category').val(parseInt($(this).attr('data-category')));
         
     });
+    //read url and navigate to appropriate section
+    var section = window.location.href.slice(window.location.href.indexOf('#') + 1);
+    
+    if (section.length) {
+        $('html,body').animate({
+            scrollTop: ($('#'+section).offset().top - 100)
+        }, 1000);
+        
+    }
+
 });
 

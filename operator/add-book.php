@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Add New Book  - Train2bWealthy</title>
+    <title>Add New Item  - Train2bWealthy</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
@@ -32,10 +32,10 @@ $errorArr = array(); //Array of errors
             <div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="messageBox"></div>
+                        <div id="messageBox"></div>
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <h3> <i class="fa fa-file-text-o fa-2x"></i> New Book</h3>
+                                <h3> <i class="fa fa-plus-circle fa-2x"></i> New Item</h3>
                             </div>
                             <div class="panel-body">
                                 <form role="form" id="CreateBook" name="CreateBook" action="../REST/add-book.php" method="POST" enctype="multipart/form-data">
@@ -50,7 +50,8 @@ $errorArr = array(); //Array of errors
                                         <label class="control-label" for="category">Category:</label>
                                         <div class="controls">
                                             <select tabindex="1" name="category" id="category" data-placeholder="Select a category.." class="form-control" required="required">
-                                                <option value="1">eBook</option>
+                                                <option value="1">e-Book</option>
+                                                <option value="2">Other</option>
                                             </select>
                                         </div>
                                     </div>

@@ -1,10 +1,10 @@
 <!--Test section-->
-            <section id="product" class="product bg-grey roomy-50 fix">
+            <section id="store" class="product bg-grey roomy-50 fix">
                 <div class="container">
                     <div class="main_product">
                         <div class="head_title text-center fix">
                             <h2 class="text-uppercase">Store</h2>
-                            <h5>List of available eBooks</h5>
+                            <h5>List of available Items</h5>
                         </div>
 
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -19,7 +19,7 @@
                                 for($count = 0; $count < $noOfPages; $count++){
                                     $active = $count == 0 ? 'active' : '';
                                 ?>
-                                <li data-target="#carousel-example-generic" data-slide-to="<?php echo count; ?>" class="<?php echo $active; ?>"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="<?php echo $count; ?>" class="<?php echo $active; ?>"></li>
                                 <?php } ?>
                             </ol>
 
@@ -58,7 +58,8 @@
                                                         <div class="m-top-10">
                                                             <button  class="book-now btn btn-primary m-top-10" 
                                                                      data-id="<?php echo $book['id']; ?>" data-name="<?php echo $book['name']; ?>"
-                                                                     data-amount="<?php echo $book['amount']; ?>" data-currency="<?php echo $book['currency']; ?>"
+                                                                     data-amount="<?php echo $book['amount']; ?>" data-currency="<?php echo $book['currency']; ?>" 
+                                                                     data-category="<?php echo $book['category']; ?>"
                                                                      >Buy Now!</button>
                                                         </div>
                                                     </div>

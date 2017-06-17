@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_POST['submitPayment'])){
-    $postVars = array('book','units','amount','currency','cardHolder','cardNumber', 'expiryDate', 'cardCVC', 'buyerName', 'buyerEmail', 'buyerPhone', 'buyerAddress'); // Form fields names
+    $postVars = array('book','units','amount','currency','category','cardHolder','cardNumber', 'expiryDate', 'cardCVC', 'buyerName', 'buyerEmail', 'buyerPhone', 'buyerAddress'); // Form fields names
     //Validate the POST variables and add up to error message if empty
     foreach ($postVars as $postVar){
         switch($postVar){

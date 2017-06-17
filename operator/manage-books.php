@@ -13,7 +13,7 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Books  - Train2bWealthy</title>
+    <title>Manage Items  - Train2bWealthy</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
@@ -40,7 +40,7 @@ $errorArr = array(); //Array of errors
                         <div class="messageBox"></div>
                         <div class="panel panel-info">
                             <div class="panel-heading">
-                                <h3>All Available Books</h3>
+                                <h3>All Available Items</h3>
                             </div>
                             <div class="panel-body">
                                 <div class="table-responsive">
@@ -69,7 +69,7 @@ $errorArr = array(); //Array of errors
                         </div>
                         <div class="panel panel-success hidden" id="hiddenUpdateForm">
                             <div class="panel-heading">
-                                <h3>Edit Book Details</h3>
+                                <h3>Edit Item Details</h3>
                             </div>
                             <div class="panel-body">
                                 <form role="form" id="UpdateBook" name="UpdateBook" action="../REST/manage-books.php" method="POST" enctype="multipart/form-data">
@@ -87,6 +87,7 @@ $errorArr = array(); //Array of errors
                                         <div class="controls">
                                             <select tabindex="1" name="category" id="category" data-placeholder="Select a category.." class="form-control">
                                                 <option value="1">e-Book</option>
+                                                <option value="2">Other</option>
                                             </select>
                                         </div>
                                     </div>
