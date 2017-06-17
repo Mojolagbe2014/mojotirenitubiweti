@@ -14,7 +14,7 @@ if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){
 }
 else{
     if(filter_input(INPUT_POST, "addNewBook") != NULL){
-        $postVars = array('name','image','category','description','media','amount', 'currency'); // Form fields names
+        $postVars = array('name','image','category','description','media','amount', 'currency', 'message'); // Form fields names
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){
             switch($postVar){
@@ -25,6 +25,8 @@ else{
                 case 'media':   $bookObj->$postVar = basename($_FILES["file"]["name"]) ? rand(100000, 1000000)."_".  strtolower(str_replace(" ", "_", filter_input(INPUT_POST, '0'))).".".pathinfo(basename($_FILES["file"]["name"]),PATHINFO_EXTENSION): ""; 
                                 $bookMedFil = $bookObj->$postVar;
                                 if($bookObj->$postVar == "") {array_push ($errorArr, "Please enter $postVar ");}
+                                break;
+                case 'message': $bookObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 break;
                 default     :   $bookObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 if($bookObj->$postVar == "") {array_push ($errorArr, "Please enter $postVar ");}

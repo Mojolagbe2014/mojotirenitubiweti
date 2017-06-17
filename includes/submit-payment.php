@@ -27,7 +27,7 @@ if(isset($_POST['submitPayment'])){
             $transport = Swift_MailTransport::newInstance();
             $message = Swift_Message::newInstance();
 
-            $content = "Dear ".$transactionObj->buyerName.", <br/> <p>Your payment details for <strong><i>[".Book::getName($dbObj, $transactionObj->book). ' eBook]</i></strong> has been received. <em>We will send you another email containing the book as an attachment once the payment is verified.</em></p>'.
+            $content = "Dear ".$transactionObj->buyerName.", <br/> <p>Your payment details for <strong><i>[".Book::getName($dbObj, $transactionObj->book). ' item]</i></strong> has been received. <em>We will send you another email containing the item as an attachment (and other information) once the payment is verified.</em></p>'.
                             '
                             <div align="center"><h2>Payment Details</h2></div>
                             <table border="0" cellpadding="10" cellspacing="0" style="margin:0px auto; background:#F2FCFF;; max-width: 750px; color:#555;font-size: 13px;font-family: Arial, sans-serif;">
@@ -36,7 +36,7 @@ if(isset($_POST['submitPayment'])){
                             <th style="border-bottom: 1px solid #ddd;">Transaction ID</th>
                             <th style="border-bottom: 1px solid #ddd;">Currency</th>
                             <th style="border-bottom: 1px solid #ddd;">Amount</th>
-                            <th style="border-bottom: 1px solid #ddd;">Book</th>
+                            <th style="border-bottom: 1px solid #ddd;">Item</th>
                             <th style="border-bottom: 1px solid #ddd;">Units</th>
                             <th style="border-bottom: 1px solid #ddd;">Buyer Name</th>
                             <th style="border-bottom: 1px solid #ddd;">Buyer Email</th>
@@ -54,8 +54,8 @@ if(isset($_POST['submitPayment'])){
                             <td>'.$transactionObj->buyerEmail.'</td>
                             <td>'.$transactionObj->buyerPhone.'</td></tr><tr>
                             <td colspan="6">
-                            <div align="center">
-                            <a href="'.SITE_URL.'">Buy more books now!</a></div></td></tr></tbody></table>'
+                            <div align="left">
+                            <a href="'.SITE_URL.'#store">Buy more items now!</a></div></td></tr></tbody></table>'
                         . "<br/> For any enquiries contact us via <a href='mailto:$emailAddress'>$emailAddress</a> or <a href='phone:".COMPANY_HOTLINE."'>".COMPANY_HOTLINE."</a>";
 
             $message->setTo(array($transactionObj->buyerEmail => $transactionObj->buyerName));
@@ -79,7 +79,7 @@ if(isset($_POST['submitPayment'])){
             $mailer1 = Swift_Mailer::newInstance($transport1);
             $mailer1->send($message1);
 
-            $msg = $thisPage->messageBox('<p>Your payment details has been sent.<br/> <strong>Please check your email address for confirmation message.</strong> <br/> Thanks</p>', 'success');
+            $msg = $thisPage->messageBox('<p>Your payment details has been sent.<br/> Your transaction ID is <b><u>'.$transactionObj->transactionId.'</u></b> *** Keep this for your record *** <br/> <strong>Please check your email address for confirmation message.</strong> <br/> Thanks</p>', 'success');
         }
         else{ $msg = $thisPage->showError($response["msg"]); }
     }else{ $msgStatus = 'error'; $msg = $thisPage->showError($errorArr); }

@@ -16,7 +16,7 @@ if(!isset($_SESSION['ITCLoggedInAdmin']) || !isset($_SESSION["ITCadminEmail"])){
 else{
     if(filter_input(INPUT_POST, "fetchBooks") != NULL){
         $requestData= $_REQUEST;
-        $columns = array( 0 =>'id', 1 =>'id', 2 =>'id', 3 => 'name', 4 => 'category', 5 => 'description', 6 => 'media', 7 => 'amount', 8 => 'image', 9 => 'date_registered');
+        $columns = array( 0 =>'id', 1 =>'id', 2 =>'id', 3 => 'name', 4 => 'category', 5 => 'description', 6 => 'media', 7 => 'amount', 8 => 'message', 9 => 'image', 10 => 'date_registered');
 
         // getting total number records without any search
         $query = $dbObj->query("SELECT * FROM book ");
@@ -116,7 +116,7 @@ else{
     }
     
     if(filter_input(INPUT_POST, "updateThisBook") != NULL){
-        $postVars = array('id','name','description', 'category','media','amount','image', 'currency'); // Form fields names
+        $postVars = array('id','name','description', 'category','media','amount','image', 'currency', 'message'); // Form fields names
         $oldMedia = $_REQUEST['oldFile']; $oldImage = $_REQUEST['oldImage'];
         //Validate the POST variables and add up to error message if empty
         foreach ($postVars as $postVar){
@@ -130,6 +130,8 @@ else{
                                 $bookObj->$postVar = $newImage;
                                 if($bookObj->$postVar == "") { $bookObj->$postVar = $oldImage;}
                                 $bookImageFil = $newImage;
+                                break;
+                case 'message': $bookObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 break;
                 default     :   $bookObj->$postVar = filter_input(INPUT_POST, $postVar) ? mysqli_real_escape_string($dbObj->connection, filter_input(INPUT_POST, $postVar)) :  ''; 
                                 if($bookObj->$postVar == "") {array_push ($errorArr, "Please enter $postVar ");}

@@ -101,15 +101,17 @@ else{
             $transactionObj->buyerEmail = Transaction::getSingle($dbObj, 'buyer_email', $transactionObj->id);
             $transactionObj->buyerPhone = Transaction::getSingle($dbObj, 'buyer_phone', $transactionObj->id);
             
+            $optionalMessage = Book::getSingle($dbObj, 'message', $transactionObj->book);
+            $optionalMessage = $optionalMessage != '' ? '<br/> <div>'.$optionalMessage.'</div>' : '';
             $targetBook = MEDIA_FILES_PATH."book/". Book::getSingle($dbObj, 'media', $transactionObj->book);
             $bookNewName = StringManipulator::slugify(StringManipulator::trimStringToFullWord(160, Book::getName($dbObj, $transactionObj->book))).".".pathinfo($targetBook,PATHINFO_EXTENSION);
             
             $emailAddress = COMPANY_EMAIL;
             $transport = Swift_MailTransport::newInstance();
             $message = Swift_Message::newInstance();
-            $subject = "Book Purchase Transaction Response - ".WEBSITE_AUTHOR;
-            $content = "Dear ".$transactionObj->buyerName.", <br/> <p>You have successfully purchased [".Book::getName($dbObj, $transactionObj->book). ' eBook]. <br/>Kindly download the attached ebook. <br/>Thanks<p>'.
-                        '
+            $subject = "Item Purchase Transaction Response - ".WEBSITE_AUTHOR;
+            $content = "Dear ".$transactionObj->buyerName.", <br/> <p>You have successfully purchased [".Book::getName($dbObj, $transactionObj->book). ' Item]. <br/>Kindly download the attached document. <br/>Thanks<p>'.
+                        $optionalMessage.'
                         <div align="center"><h2>Payment Success</h2></div>
                         <table border="0" cellpadding="10" cellspacing="0" style="margin:0px auto; background:#F2FCFF;; max-width: 750px; color:#555;font-size: 13px;font-family: Arial, sans-serif;">
                         <thead style="background: #BCE4FA;font-weight: bold;">
@@ -118,7 +120,7 @@ else{
                         <th style="border-bottom: 1px solid #ddd;">Date</th>
                         <th style="border-bottom: 1px solid #ddd;">Currency</th>
                         <th style="border-bottom: 1px solid #ddd;">Amount</th>
-                        <th style="border-bottom: 1px solid #ddd;">Book</th>
+                        <th style="border-bottom: 1px solid #ddd;">Item</th>
                         <th style="border-bottom: 1px solid #ddd;">Units</th>
                         <th style="border-bottom: 1px solid #ddd;">Buyer Name</th>
                         <th style="border-bottom: 1px solid #ddd;">Buyer Email</th>
@@ -137,8 +139,8 @@ else{
                         <td>'.$transactionObj->buyerEmail.'</td>
                         <td>'.$transactionObj->buyerPhone.'</td></tr><tr>
                         <td colspan="6">
-                        <div align="center">
-                        <a href="'.SITE_URL.'">Buy more books now!</a></div></td></tr></tbody></table>'
+                        <div align="left">
+                        <a href="'.SITE_URL.'#store">Buy more items now!</a></div></td></tr></tbody></table>'
                     . "<br/> For any enquiries contact us via <a href='mailto:$emailAddress'>$emailAddress</a>";
             $message->setTo(array($transactionObj->buyerEmail => $transactionObj->buyerName));
             $message->setSubject($subject);
@@ -150,7 +152,7 @@ else{
                 Swift_Attachment::fromPath($targetBook)->setFilename($bookNewName)
             );
             $mailer->send($message);
-            //echo Transaction::updateSingle($dbObj, ' status ',  $transactionObj->status, $transactionObj->id); 
+            echo Transaction::updateSingle($dbObj, ' status ',  $transactionObj->status, $transactionObj->id); 
 //            $json = array("status" => 0, "msg" => $content); 
 //            $dbObj->close();//Close Database Connection
 //            header('Content-type: application/json');

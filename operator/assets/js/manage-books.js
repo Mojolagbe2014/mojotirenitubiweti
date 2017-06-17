@@ -121,7 +121,7 @@ $(document).ready(function(){
         if(confirm("Are you sure you want to delete this book ["+$(this).attr('data-name')+"]? Book media ['"+$(this).attr('data-media')+"'] will be deleted too.")) deleteBook($(this).attr('data-id'),$(this).attr('data-media'),$(this).attr('data-image'));
     });
     $(document).on('click', '.edit-book', function() {
-        if(confirm("Are you sure you want to edit this book ["+$(this).attr('data-name')+"] details?")) editBook($(this).attr('data-id'), $(this).attr('data-name'), $(this).attr('data-category'), $(this).find('span#JQDTdescriptionholder').html(), $(this).attr('data-media'), $(this).attr('data-amount'), $(this).attr('data-image'), $(this).attr('data-currency'));
+        if(confirm("Are you sure you want to edit this book ["+$(this).attr('data-name')+"] details?")) editBook($(this).attr('data-id'), $(this).attr('data-name'), $(this).attr('data-category'), $(this).find('span#JQDTdescriptionholder').html(), $(this).attr('data-media'), $(this).attr('data-amount'), $(this).attr('data-image'), $(this).attr('data-currency'), $(this).find('span#JQDTmessageholder').html());
     });
     
     function deleteBook(id, media, image){
@@ -198,8 +198,8 @@ $(document).ready(function(){
         });
     }
     
-    function editBook(id, name, category, description, media, amount, image, currency){//,
-        var formVar = {id:id, name:name, category:category, description:description, media:media, amount:amount, image:image, currency:currency };
+    function editBook(id, name, category, description, media, amount, image, currency, message){//,
+        var formVar = {id:id, name:name, category:category, description:description, media:media, amount:amount, image:image, currency:currency, message:message };
         $.each(formVar, function(key, value) { 
             if(key == 'media') { $('form #oldFile').val(value); $('form #oldFileComment').text(value).css('color','red');} 
             else if(key == 'image') { $('form #oldImage').val(value); $('form #oldImageComment').html('<img src="../media/book-image/'+value+'" style="width:50px;height:50px; margin:5px">');}
@@ -208,6 +208,7 @@ $(document).ready(function(){
         $('#hiddenUpdateForm').removeClass('hidden');
         $(document).scrollTo('div#hiddenUpdateForm');
         CKEDITOR.instances['description'].setData(description);
+        CKEDITOR.instances['message'].setData(message);
         
         $('#cancelEdit').click(function(){ $("#hiddenUpdateForm").addClass('hidden'); });
     }
@@ -217,6 +218,7 @@ $(document).ready(function(){
             $(document).scrollTo('div.panel h3');
             var formData = new FormData($(this)[0]);
             formData.append('description', CKEDITOR.instances['description'].getData());
+            formData.append('message', CKEDITOR.instances['message'].getData());
             var alertType = ["danger", "success", "danger", "error"];
             $.ajax({
             url: $(this).attr("action"),

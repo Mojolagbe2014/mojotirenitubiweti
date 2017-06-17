@@ -95,6 +95,18 @@ $errorArr = array(); //Array of errors
                                     </div>
                                     
                                     <div class="form-group">
+                                        <label class="control-label" title="This will be added to the auto generated message sent to the buyer." for="message">Message to Buyer [Optional]: <br/> 
+                                            <small class="btn btn-warning btn-sm" style="cursor: default">This will be added to the auto generated message sent to the buyer.</small></label>
+                                        <div class="controls">
+                                            <textarea class="span5" id="message" name="message" class="form-control"></textarea>
+                                            <script>
+                                                CKEDITOR.replace('message');
+                                            </script>
+                                        </div>
+                                    </div>
+
+                                    
+                                    <div class="form-group">
                                         <div class="controls">
                                             <input type="hidden" name="addNewBook" id="addNewBook" value="addNewBook"/>
                                             <button type="submit" name="addBook" id="addBook" class="btn btn-danger">Add Book</button> &nbsp; &nbsp;

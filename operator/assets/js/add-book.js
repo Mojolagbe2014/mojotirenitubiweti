@@ -48,6 +48,7 @@ $(document).ready(function(){
         $(document).scrollTo('div.panel h3');
         var formData = new FormData($(this)[0]);
         formData.append('description', CKEDITOR.instances['description'].getData());
+        formData.append('message', CKEDITOR.instances['message'].getData());
         var alertType = ["danger", "success", "danger", "error"];
         $.ajax({
             url: $(this).attr("action"),

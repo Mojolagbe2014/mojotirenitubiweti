@@ -130,7 +130,7 @@ $(document).ready(function(){
                     $("#messageBox, .messageBox").html('<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert">&times;</button>Transaction Successfully Approved! </div>');
                 }
                 else {
-                    $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Transaction Approval Failed. '+data.msg+'</div>');
+                    $("#messageBox, .messageBox").html('<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert">&times;</button>Transaction Approval Failed. '+data.msg ? data.msg : data+'</div>');
                 }
                 dataTable.ajax.reload();
                 $.gritter.add({

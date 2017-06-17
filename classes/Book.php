@@ -15,6 +15,7 @@ class Book implements ContentManipulator{
     private $amount = 0;
     private $image;
     private $currency;
+    private $message = '';
     private $dbObj;
     private $tableName;
     
@@ -40,8 +41,8 @@ class Book implements ContentManipulator{
      * @return JSON JSON encoded string/result
      */
     function add(){
-        $sql = "INSERT INTO book (name, category, description, media, amount, status, date_registered, image, currency) "
-                ."VALUES ('{$this->name}','{$this->category}','{$this->description}','{$this->media}','{$this->amount}','{$this->status}',$this->dateRegistered,'{$this->image}','{$this->currency}')";
+        $sql = "INSERT INTO book (name, category, description, media, amount, status, date_registered, image, currency, message) "
+                ."VALUES ('{$this->name}','{$this->category}','{$this->description}','{$this->media}','{$this->amount}','{$this->status}',$this->dateRegistered,'{$this->image}','{$this->currency}','{$this->message}')";
         if($this->notEmpty($this->name,$this->description,$this->image)){
             $result = $this->dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, book successfully added!"); }
@@ -90,8 +91,8 @@ class Book implements ContentManipulator{
                 if($r['status'] == 1){  $fetBookStat = 'icon-check'; $fetBookRolCol = 'btn-success'; $fetBookRolTit = "De-activate Book";}
                 if($r['media'] !=''){ $bookMediaLink = '<a href="'.SITE_URL.'media/book/'.$r['media'].'">View Media</a>'; }
                 $multiActionBox = '<input type="checkbox" class="multi-action-box" data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-status="'.$r['status'].'" data-image="'.$r['image'].'" data-media="'.$r['media'].'" data-featured="'.$r['featured'].'" />';
-                $actionLink = ' <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-category="'.$r['category'].'" data-currency="'.$r['currency'].'" data-description ="" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-amount="'.$r['amount'].'" data-date-registered="'.$r['date_registered'].'" class="btn btn-info btn-sm edit-book"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span class="hidden" id="JQDTdescriptionholder">'.$r['description'].'</span> </button> <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-status="'.$r['status'].'"  class="btn '.$fetBookRolCol.' btn-sm activate-book"  title="'.$fetBookRolTit.'"><i class="btn-icon-only '.$fetBookStat.'"> </i></button> <button data-id="'.$r['id'].'" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-book" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>';
-                $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionLink), $r['id'], utf8_encode($r['name']), $itemCat[intval($r['category'])], StringManipulator::trimStringToFullWord(60, utf8_encode(stripcslashes(strip_tags($r['description'])))), utf8_encode($bookMediaLink), utf8_encode($r['currency'].' '.number_format($r['amount'])), utf8_encode('<img src="../media/book-image/'.utf8_encode($r['image']).'" width="60" height="50" style="width:60px; height:50px;" alt="Pix">'), utf8_encode($r['date_registered']));//
+                $actionLink = ' <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-category="'.$r['category'].'" data-currency="'.$r['currency'].'" data-description =""  data-message ="" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-amount="'.$r['amount'].'" data-date-registered="'.$r['date_registered'].'" class="btn btn-info btn-sm edit-book"  title="Edit"><i class="btn-icon-only icon-pencil"> </i> <span class="hidden" id="JQDTdescriptionholder">'.$r['description'].'</span>  <span class="hidden" id="JQDTmessageholder">'.$r['message'].'</span> </button> <button data-id="'.$r['id'].'" data-name="'.$r['name'].'" data-status="'.$r['status'].'"  class="btn '.$fetBookRolCol.' btn-sm activate-book"  title="'.$fetBookRolTit.'"><i class="btn-icon-only '.$fetBookStat.'"> </i></button> <button data-id="'.$r['id'].'" data-media="'.$r['media'].'"  data-image="'.$r['image'].'" data-name="'.$r['name'].'" class="btn btn-danger btn-sm delete-book" title="Delete"><i class="btn-icon-only icon-trash"> </i></button>';
+                $result[] = array(utf8_encode($multiActionBox), utf8_encode($actionLink), $r['id'], utf8_encode($r['name']), $itemCat[intval($r['category'])], StringManipulator::trimStringToFullWord(60, utf8_encode(stripcslashes(strip_tags($r['description'])))), utf8_encode($bookMediaLink), utf8_encode($r['currency'].' '.number_format($r['amount'])), StringManipulator::trimStringToFullWord(60, utf8_encode(stripcslashes(strip_tags($r['message'])))), utf8_encode('<img src="../media/book-image/'.utf8_encode($r['image']).'" width="60" height="50" style="width:60px; height:50px;" alt="Pix">'), utf8_encode($r['date_registered']));//
             }
             $json = array("status" => 1,"draw" => intval($draw), "recordsTotal"    => intval($totalData), "recordsFiltered" => intval($totalFiltered), "data" => $result);
         } 
@@ -114,7 +115,7 @@ class Book implements ContentManipulator{
         $result =array(); 
         if(count($data)>0){
             foreach($data as $r){
-                $result[] = array("id" => $r['id'], "name" =>  utf8_encode($r['name']), "image" =>  utf8_encode($r['image']), 'category' => utf8_encode($r['category']), 'description' => utf8_encode(StringManipulator::trimStringToFullWord(200, stripcslashes(strip_tags($r['description'])))), 'media' =>  utf8_encode($r['media']), 'currency' =>  utf8_encode($r['currency']), 'amount' =>  utf8_encode($r['amount']), 'cost' =>  utf8_encode($r['currency'].number_format($r['amount'], 2)), 'status' =>  utf8_encode($r['status']), 'dateRegistered' => utf8_encode($r['date_registered']), 'categoryName' => utf8_encode($r['category']));
+                $result[] = array("id" => $r['id'], "name" =>  utf8_encode($r['name']), "image" =>  utf8_encode($r['image']), 'category' => utf8_encode($r['category']), 'description' => utf8_encode(StringManipulator::trimStringToFullWord(200, stripcslashes(strip_tags($r['description'])))), 'message' => utf8_encode(StringManipulator::trimStringToFullWord(200, stripcslashes(strip_tags($r['message'])))), 'media' =>  utf8_encode($r['media']), 'currency' =>  utf8_encode($r['currency']), 'amount' =>  utf8_encode($r['amount']), 'cost' =>  utf8_encode($r['currency'].number_format($r['amount'], 2)), 'status' =>  utf8_encode($r['status']), 'dateRegistered' => utf8_encode($r['date_registered']), 'categoryName' => utf8_encode($r['category']));
             }
             $json = array("status" => 1, "info" => $result);
         } 
@@ -171,7 +172,7 @@ class Book implements ContentManipulator{
      * @return JSON JSON encoded success or failure message
      */
     public function update() {
-        $sql = "UPDATE book SET name = '{$this->name}', image = '{$this->image}', category = '{$this->category}', description = '{$this->description}', media = '{$this->media}', amount = '{$this->amount}', currency = '{$this->currency}' WHERE id = $this->id ";
+        $sql = "UPDATE book SET name = '{$this->name}', image = '{$this->image}', category = '{$this->category}', description = '{$this->description}', message = '{$this->message}', media = '{$this->media}', amount = '{$this->amount}', currency = '{$this->currency}' WHERE id = $this->id ";
         if(!empty($this->id)){
             $result = $this->dbObj->query($sql);
             if($result !== false){ $json = array("status" => 1, "msg" => "Done, book successfully updated!"); }

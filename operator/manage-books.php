@@ -58,6 +58,7 @@ $errorArr = array(); //Array of errors
                                                 <th>Description</th>
                                                 <th>Media</th>
                                                 <th>Amount</th>
+                                                <th>Optional Message <br/> to Buyer</th>
                                                 <th>Book Image</th>
                                                 <th>Date Registered</th>
                                             </tr>
@@ -129,6 +130,17 @@ $errorArr = array(); //Array of errors
                                         <div class="controls">
                                             <input data-title="book cost" type="number" placeholder="book cost" id="amount" name="amount" data-original-title="book cost" class="form-control" required="required">
                                         </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label class="control-label" title="This will be added to the auto generated message sent to the buyer." for="message">Message to Buyer [Optional]: <br/> 
+                                            <small class="btn btn-warning btn-sm" style="cursor: default">This will be added to the auto generated message sent to the buyer.</small></label>
+                                        <div class="controls">
+                                            <textarea class="span5" id="message" name="message" class="form-control"></textarea>
+                                            <script>
+                                                CKEDITOR.replace('message');
+                                            </script>
                                         </div>
                                     </div>
                                     
