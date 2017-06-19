@@ -3,11 +3,55 @@ $(document).ready(function(){
     getTransactionRecords();
     function getTransactionRecords(){
             dataTable = $('#transactionslist').DataTable( {
+            dom: 'lBfrtip',
+//            buttons: [
+//                {
+//                    extend: 'copyHtml5',
+//                    exportOptions: {
+//                     columns: ':contains("Office")'
+//                    }
+//                },
+//                'excelHtml5',
+//                'csvHtml5',
+//                'pdfHtml5',
+//                'print',
+//                'colvis'
+//            ],
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: 'Export Table',
+                    buttons: [
+                        {
+                            extend: 'copy',
+                            exportOptions: { columns: ':visible' }
+                        },
+                        {
+                            extend: 'excel',
+                            exportOptions: { columns: ':visible' }
+                        },
+                        {
+                            extend: 'csv',
+                            exportOptions: { columns: ':visible' }
+                        },
+                        {
+                            extend: 'pdf',
+                            exportOptions: { columns: ':visible' }
+                        },
+                        {
+                            extend: 'print',
+                            exportOptions: { columns: ':visible' }
+                        }
+                    ]
+                },
+                'colvis'
+            ],
             columnDefs: [ {
                 orderable: false,
                 className: 'select-checkbox',
                 targets:   [0, 1]
             } ],
+        
             select: {
                 style:    'os',
                 selector: 'td:first-child'

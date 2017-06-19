@@ -13,16 +13,20 @@ $errorArr = array(); //Array of errors
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Manage Transaction Records  - Train2bWealthy</title>
+    <title>Transaction Records  - Train2bWealthy</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/custom.css" rel="stylesheet" />
     <link href="images/icons/css/font-awesome.css" rel="stylesheet" type="text/css"/>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+    <link href='https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://cdn.datatables.net/buttons/1.3.1/css/buttons.dataTables.min.css' rel='stylesheet' type='text/css' />
+    <link href='https://cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.min.css' rel='stylesheet' type='text/css' />  
+<!--    <link href="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.css" rel="stylesheet" type="text/css" />-->
     <link href="assets/js/dataTables/dataTables.bootstrap.css" rel="stylesheet" />
     <link href="assets/js/gritter/css/jquery.gritter.css" rel="stylesheet" type="text/css"/>
     <style>
-        td, th {white-space: nowrap}
+        td,th {white-space: nowrap} .dt-buttons {margin-left: 15px;}
     </style>
 </head>
 <body>
@@ -173,9 +177,11 @@ $errorArr = array(); //Array of errors
     <script src="assets/js/jquery.metisMenu.js"></script>
     <script src="assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
     <script src="assets/js/gritter/js/jquery.gritter.min.js" type="text/javascript"></script>
+    <script src="https://cdn.datatables.net/tabletools/2.2.4/js/dataTables.tableTools.min.js" type="text/javascript"></script>
     <script src="assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="assets/js/dataTables/dataTables.bootstrap.js"></script>
     <script src="assets/js/manage-transactions.js?<?php echo time(); ?>"></script>
     <script src="assets/js/custom.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/r/dt/jq-2.1.4,jszip-2.5.0,pdfmake-0.1.18,dt-1.10.9,af-2.0.0,b-1.0.3,b-colvis-1.0.3,b-html5-1.0.3,b-print-1.0.3,se-1.0.1/datatables.min.js"></script>
 </body>
 </html>
