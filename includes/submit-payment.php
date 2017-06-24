@@ -56,7 +56,7 @@ if(isset($_POST['submitPayment'])){
                             <td colspan="6">
                             <div align="left">
                             <a href="'.SITE_URL.'#store">Buy more items now!</a></div></td></tr></tbody></table>'
-                        . "<br/> For any enquiries contact us via <a href='mailto:$emailAddress'>$emailAddress</a> or <a href='phone:".COMPANY_HOTLINE."'>".COMPANY_HOTLINE."</a>";
+                        . "<br/> For any enquiries contact us via <a href='mailto:$emailAddress'>$emailAddress</a> or <a href='tel:".COMPANY_HOTLINE."'>".COMPANY_HOTLINE."</a>";
 
             $message->setTo(array($transactionObj->buyerEmail => $transactionObj->buyerName));
             $message->setSubject($subject);
