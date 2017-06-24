@@ -56,7 +56,8 @@ if(isset($_POST['submitPayment'])){
                             <td colspan="6">
                             <div align="left">
                             <a href="'.SITE_URL.'#store">Buy more items now!</a></div></td></tr></tbody></table>'
-                        . "<br/> For any enquiries contact us via <a href='mailto:$emailAddress'>$emailAddress</a> or <a href='tel:".COMPANY_HOTLINE."'>".COMPANY_HOTLINE."</a>";
+                        . "<br/> For any enquiries contact us via <a href='mailto:$emailAddress'>$emailAddress</a> or <a href='tel:".COMPANY_HOTLINE."'>".COMPANY_HOTLINE."</a>"
+                        . '<br /> <br/> <p><span style="font-family: arial, sans-serif; font-size: 12.8px; color: rgb(255, 0, 0);"><strong>Please Note:</strong>&nbsp;</span><span style="color: rgb(34, 34, 34); font-family: arial, sans-serif; font-size: 12.8px;">Your&nbsp;</span><u style="color: rgb(34, 34, 34); font-family: arial, sans-serif; font-size: 12.8px;"><strong>Credit Card</strong></u><span style="color: rgb(34, 34, 34); font-family: arial, sans-serif; font-size: 12.8px;">&nbsp;will be processed through our affiliated company:&nbsp;</span><span style="font-family: arial, sans-serif; font-size: 12.8px; color: rgb(0, 0, 255);"><strong>CUSTOM LEARNING SERVICE (CLS)</strong></span><p>';
 
             $message->setTo(array($transactionObj->buyerEmail => $transactionObj->buyerName));
             $message->setSubject($subject);
