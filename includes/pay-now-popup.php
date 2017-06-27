@@ -63,7 +63,7 @@
                         </div>
                     </div>
 
-                    <legend>Card Details</legend>
+                    <legend>Card Details </legend>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Card Holder</label>  
                         <div class="col-md-8 inputGroupContainer">
@@ -78,7 +78,8 @@
                         <div class="col-md-8 inputGroupContainer">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="fa fa-barcode"></i></span>
-                                <input name="cardNumber" required="yes" placeholder="Card Number" class="form-control" type="text" type="text" pattern=".{16,19}" title="16 to 19 characters" maxlength="19">
+                                <input name="cardNumber" required="yes" placeholder="Card Number" class="form-control" type="text" type="text" pattern=".{16,19}" title="16 to 19 characters" maxlength="19"> <br/>
+                                <small class="text-info sm-text-center"><q>We don’t take AMERICAN EXPRESS</q></small>
                             </div>
                         </div>
                     </div>
